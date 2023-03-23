@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.Location>
+
+@{
+    var hunt = (Hunt?)ViewData["Hunt"];
+    ViewData["Title"] = "Add Tasks to Hunt";
+}
+
+<h1>Add Tasks of @hunt.HuntName</h1>
+
+<p>
+    <a asp-controller="Locations" asp-action="Create" asp-route-Id="@hunt.Id" style="padding-left: 3px">Create new task</a> |
+    <a asp-action="ViewTasks" asp-route-Id="@hunt.Id" style="padding-left: 3px">Back to Hunt</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Task)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Place)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Task)
+                </td>
+                <td>
+                    @{
+                        var locationCheck = hunt.HuntLocations.FirstOrDefault(a => a.LocationId == item.Id);
+                    }
+                    @if(locationCheck != null){
+                        @Html.ActionLink("Remove", "RemoveTask", new { id=item.Id,huntid=hunt.Id  }, new { @style = "color:red;"})
+                    }
+                    else{
+                        @Html.ActionLink("Add", "AddTask", new { id=item.Id,huntid=hunt.Id  })
+                    }
+
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

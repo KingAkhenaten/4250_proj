@@ -1,0 +1,159 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    color: #191970;
+}
+#taskimg {
+    width: 100px;
+    height: 100px;
+}
+#taskheader {
+    font-weight: bold;
+}
+
+#taskstatus {
+    font-weight: bold;
+    text-decoration: underline;
+}
+#taskbody {
+    position: relative;
+
+}
+.list-group-item, col  {
+    
+    background-color: rgba(172,172,172,0.2) !important;
+    position: relative;
+}
+.offcanvas{
+    width: 350px;
+}
+
+.button.left{
+    top: 40%;
+    color: #041E41;
+    cursor: pointer;
+    padding: 30px 10px 30px 10px;
+    position: fixed;
+    background: #041E41;
+}
+.button.right {
+    top: 40%;
+    color: #041E41;
+    cursor: pointer;
+    padding: 30px 10px 30px 10px;
+    position: absolute;
+    background: #041E41;
+}
+
+.button:hover {
+       background: gold;
+ }
+
+.right {
+    right: 100%;
+    border-radius: 100px 0 0 100px;
+}
+.triangle-right {
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-top-width: 20px;
+    border-bottom-width: 20px;
+    border-left: 10px solid rgba(255, 255, 255, .5);
+}
+.left {
+    right: 0%;
+    border-radius: 100px 0 0 100px;
+}
+
+.triangle-left {
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    border-top-width: 20px;
+    border-bottom-width: 20px;
+    border-right: 10px solid rgba(255, 255, 255, .5);
+}
+#taskAnswer span {
+    border: solid 1px black;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+
+
+    vertical-align: middle;
+    background-color: #041E41;
+    color: white;
+    border-radius: 8px;
+}
+#taskitem:hover .completeBtn{
+    background-color: #FFC72C;
+}
+#taskAnswer span i {
+    vertical-align: middle;
+    text-align: center;
+
+
+}
+#huntHeader {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+}
+#huntMainHeader {
+    display: inline;
+}
+#taskRemove span{
+
+}
+
+/* Banner for landing page */
+.banner {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.banner-text {
+    font-size: 25px;
+    font-weight: 700;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 2em;
+}
+
+.navbar {
+  background-color: #FFC72C;
+}
+
+.nav-link {
+  color: #191970;
+}
+
+.navbar-brand {
+    color: #191970;
+}
+
+.btn-primary {
+    background-color: #191970;
+}
+
+/*.navbar-toggler {
+    background-color: #191970;
+}*/

@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.Hunt>
+
+@{
+    ViewData["Title"] = "Hunts";
+}
+
+<h1>Displaying all hunts</h1>
+
+<p>
+    <a asp-action="Create" style="padding-right: 3px">Create New Hunt</a> |
+    <a asp-controller="locations" asp-action="Index" style="padding-right: 3px">Manage All Tasks</a> |
+    <a asp-controller="User" asp-action="Manage" style="padding-left: 3px">Back to Admin Portal</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+@*            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.HuntName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                Time Remaining
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Players)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HuntLocations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+@*            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>  *@          
+            <td>
+                @Html.DisplayFor(modelItem => item.HuntName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                    @{
+                        var timeRemaining = (item.EndDate - DateTime.Now).ToString();
+                        if (TimeSpan.Parse(timeRemaining).Seconds<0)
+                        {
+                            timeRemaining = "Ended";
+                        }
+                        else
+                        {
+                            timeRemaining = timeRemaining.Substring(0, timeRemaining.LastIndexOf("."));
+                        }
+                }
+                    @Html.DisplayFor(modelItem => timeRemaining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Players.Count)
+             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HuntLocations.Count)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("View Hunt", "ViewTasks", new {  id=item.Id  }) |
+                @Html.ActionLink("Delete Hunt", "Delete", new {  id=item.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+﻿@model ScavengeRUs.Models.Entities.AccessCode
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <section>
+            <form asp-action="LogIn">
+                <h1>@ViewData["Title"]</h1>
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h3>Enter your access code.</h3>
+                <div class="form-floating">
+                    <input asp-for="Code" class="form-control" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Code" class="form-label"></label>
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+                <div>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+                <div>
+                    <p>
+                        <a asp-action="Index">Return back to home</a>
+                    </p>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

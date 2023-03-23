@@ -1,0 +1,90 @@
+
+Server Documentation
+
+IP : 151.141.90.160
+
+Check status
+    `Sudo systemctl status BucHunt.service`
+Force stop
+    `Sudo systemctl stop BucHunt.service`
+Start
+    `Sudo systemctl start BucHunt.service`
+Restart
+    `Sudo systemctl restart BucHunt.service`
+
+To update the server app to the main repository:
+
+
+
+1. Transfer folder from publishing the project to the server.
+  This can be done various ways. 
+  I used a FTP cleint to do this.
+  You must also manually transfer the database to the publishing folder
+  Make sure the database (and the publishing folder the database is in) has read and write permissions
+	
+2. SSH into FALL22-4250-940-1.etsu.edu
+  server: http://151.141.90.160/
+  username: stuadmin
+  pass: tUpme35$
+  
+3. Restart the service
+  `Sudo systemctl restart BucHunt.service`
+
+4. Verify its running correctly
+  `Sudo systemctl status BucHunt.service`
+
+5. Verify the database connection works by trying to log in
+
+
+
+
+
+
+The proxy
+
+  This redirects incoming http requests on port 80 to the service running on port 5000 of the localhost (our web app)
+
+    `sudo nano /etc/apache2/sites-available/BucHunt.service`
+    replaced contents with:
+	<VirtualHost *:80>
+		ProxyPreserveHost On
+		ProxyPass / http://127.0.0.1:5000/
+		ProxyPassReverse / http://127.0.0.1:5000/
+		ErrorLog ${APACHE_LOG_DIR}BucHunt.log
+	</VirtualHost>
+
+Enabling the proxy:
+    `sudo a2enmod proxy`
+    `sudo a2enmod proxy_http`
+    `sudo a2enmod proxy_html`
+    `sudo systemctl reload/restart apache2.service`
+
+System service
+
+    This allows to run the web app as a service in the background
+
+    `sudo nano /etc/systemd/system/BucHunt.service`
+
+
+	[Unit]
+	Description=BucHunt Web App
+
+	[Service]
+	WorkingDirectory=/home/stuadmin/BucHunt/ScavengeRUs/Release/
+	ExecStart=/home/stuadmin/.dotnet/dotnet /home/stuadmin/BucHunt/ScavengeRUs/Release/ScavengeR>
+	Restart=always
+	# Restart service after 10 seconds if the dotnet service crashes:
+	RestartSec=10
+	KillSignal=SIGINT
+	SyslogIdentifier=dotnet-example
+	User=www-data
+	Environment=ASPNETCORE_ENVIRONMENT=Production
+	Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+	[Install]
+	WantedBy=multi-user.target
+
+
+
+
+

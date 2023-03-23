@@ -1,0 +1,21 @@
+﻿<!--This is the profile for the logged in user. It
+displays their name, profile picture and username-->
+@model ScavengeRUs.Models.Entities.ApplicationUser
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<h1>@Model.FirstName @Model.LastName</h1>
+<p>placeholder for profile picture</p>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            <p>Username:</p>
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>

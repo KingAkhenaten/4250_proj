@@ -1,0 +1,60 @@
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.Location>
+
+@{
+    ViewData["Title"] = "Questions";
+}
+
+<script src="js/site.js"></script>
+<script>
+    function displayLocation() {
+        var elem = document.getElementById('geolocation');
+        getLocationAsync(callWithLocationSuccess,callWithLocationFailure);
+        // CALLBACKS
+        function callWithLocationSuccess(coords) {
+            elem.innerHTML = 'You are at <br>';
+            elem.innerHTML += 'Latitude: ' + (coords.latitude) + '<br>';
+            elem.innerHTML += 'Longitude: ' + (coords.longitude) + '<br>';
+            elem.innerHTML += 'Altitude: ' + (coords.altitude) + '<br>';
+            elem.innerHTML += 'Accuracy: ' + (coords.accuracy) + ' metres <br>';
+            elem.innerHTML += 'Alt. Accuracy: ' + (coords.altitudeAccuracy) + ' metres <br>';
+            elem.innerHTML += 'Heading: ' + (coords.heading) + ' degrees <br>';
+            elem.innerHTML += 'Speed: ' + (coords.speed) + ' metres per second <br>';
+        }
+
+        function callWithLocationFailure(gpError) {
+            switch (gpError) {
+                case 1:
+                    elem.innerHTML = 'no geolocation support';
+                    break;
+                case 2:
+                    elem.innerHTML = 'user denied permission';
+                    break;
+                case 3:
+                    elem.innerHTML = 'location unavailable';
+                    break;
+                case 4:
+                    elem.innerHTML = 'location acquisition timed out';
+                    break;
+            }
+        }
+    }
+
+    setTimeout(displayLocation,0);
+</script>
+
+<h1>Where am I?</h1>
+
+<p id="geolocation">Unknown</p>
+
+<h1>Hunt</h1>
+
+@foreach(var item in Model)
+{
+    <br />
+    <h4>
+        @Html.DisplayFor(modelItem => item.Place)
+    </h4>
+    <p>
+        @Html.DisplayFor(modelItem => item.Task)
+    </p>
+}

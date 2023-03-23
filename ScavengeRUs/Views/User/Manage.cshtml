@@ -1,0 +1,74 @@
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Admin Portal";
+    string? roles = null;
+}
+
+<h1>Active Users</h1>
+
+<p>
+    <a asp-action="Create" style="padding-left: 3px">Create New User</a> |
+    <a asp-area="" asp-controller="Hunt" asp-action="Index" style="padding-right: 3px">Manage Hunts/Tasks</a>
+</p>
+
+<form asp-controller="User" asp-action="Manage">
+    <p>
+        Search: <input type="text" name="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roles)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Hunt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Email)
+            </td>
+            <td>
+                    @Html.DisplayFor(model => item.FirstName) @Html.DisplayFor(model => item.LastName)
+            </td>
+            <td>
+                    @Html.DisplayFor(model => item.PhoneNumber)
+            </td>
+            <td>   
+                @foreach (var role in item.Roles)
+                {
+                    @Html.DisplayFor(model => @role)                      
+                }
+                
+
+            </td>
+                <td>
+                    @Html.DisplayFor(model => item.Hunt.HuntName)
+                </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.UserName }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.UserName }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.UserName })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

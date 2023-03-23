@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.ApplicationUser>
+
+@{
+    var hunt = (Hunt?)ViewData["Hunt"];
+    ViewData["Title"] = "View Players of hunt";
+}
+
+<h1>Active Users of @hunt.HuntName</h1>
+
+<p>
+    <a asp-action="ViewTasks" asp-route-Id="@hunt.Id" style="padding-left: 3px">Back to hunt</a> |
+    <a asp-action="AddPlayerToHunt" asp-route-Id="@hunt.Id" style="padding-right: 3px">Add a user to this Hunt</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccessCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any())
+        {
+            <tr>
+                <td>
+                    <span> No players are assigned to this hunt</span>
+                </td>
+                <td>
+                </td>                
+                <td>
+                </td>                
+                <td>
+                </td>                
+                <td>
+                </td>
+            </tr>
+        }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.AccessCode.Code)
+                </td>
+                <td>
+                    @Html.ActionLink("Revoke Access", "RemoveUser", new { id=item.UserName, huntId=hunt.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

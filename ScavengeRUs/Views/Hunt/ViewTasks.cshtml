@@ -1,0 +1,182 @@
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.Location>
+@using Microsoft.AspNetCore.Identity
+@{
+    var hunt = (Hunt?)ViewData["Hunt"];
+    ViewData["Title"] = "View Players of hunt";
+}
+@{
+    var timeRemaining = (hunt!.EndDate - DateTime.Now).ToString();
+    if (TimeSpan.Parse(timeRemaining).Seconds < 0)
+    {
+        timeRemaining = "Ended";
+    }
+    else
+    {
+        timeRemaining = timeRemaining.Substring(0, timeRemaining.LastIndexOf("."));
+    }
+}
+ @*Task Modal*@
+<div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div id="mainContent" class="modal-content">
+            <form id="createTaskModal">
+                <div class="modal-header">
+                    <h5 class="modalTitle" id="AddItemTitle">
+                        Scan QR code or enter answer
+                    </h5>
+                    <button type="button" class="btn-close"
+                            data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+
+                </div>
+                <div class="modal-body">
+                    <div id="alertAreaSuccess" class="alert alert-success" role="alert" style="display:none">
+                        <span id="successMessageArea"></span>
+                    </div>
+                    <div id="alertAreaFailed" class="alert alert-danger" role="alert" style="display:none">
+                        <span id="failedMessageArea"></span>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label" >
+                            Question
+                        </label>
+                        <div class="col-sm-10 col-form-label" >
+                        <span id="TaskInput"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label class="col-sm-2 col-form-label">
+                            Answer
+                        </label>
+                        <div class="col-sm-10">
+                            <input name="Answer" id="AnswerInput" class="form-control" />
+                            <input name="TaskId" hidden id="TaskIdInput" class="form-control" />
+                            <input name="HuntId" hidden id="HuntIdInput" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Enter
+                    </button>
+                    <button type="reset" class="btn btn-secondary">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*Task Modal*@
+
+
+<div id="taskarea">
+    <div class="row">
+        <div class="col">
+            <h1>@hunt.HuntName</h1>
+        </div>
+    </div>
+    <p>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="ManageTasks" asp-route-Id="@hunt.Id" class="btn btn-danger">Manage Tasks</a>
+
+            <a asp-action="ViewPlayers" asp-route-Id="@hunt.Id" class="btn btn-danger">View Players</a>
+
+            <a asp-action="Index" asp-route-Id="@hunt.Id" class="btn btn-danger">View all hunts</a>
+            <span style="color:Red;">*** Only admins can see/access the red buttons</span>
+            <hr />
+        }
+    </p>
+    <h4>Introduction Text</h4>
+    <p>@hunt.InvitationText</p>
+    <hr />
+    <br />
+    <p id="huntHeader">Tasks for @hunt.HuntName</p>
+
+    <div class="list-group">
+        @if (!Model.Any())
+        {
+            <hr>
+
+            <span style="text-align:center">No tasks are assigned to this hunt.</span>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="ManageTasks" asp-route-Id="@hunt.Id" style="width: 100px; margin: auto" class="btn btn-danger mt-3">Add Tasks</a>
+            }
+            <hr />
+
+        }
+
+        @foreach (var item in Model)
+        {
+
+            var img = $"/images/{item.Place}.jpg";
+            <div id="taskitem">
+                <a data-id="@item.Id" data-task="@item.Task" data-huntid="@hunt.Id" id="btnCreateTask" class="list-group-item list-group-item-action">
+                    <div class="row" id="taskrow">
+
+                        <div class="col">
+                            <img id="taskimg" src="@img" />
+                        </div>
+                        <div class="col-6">
+                            <div class="row" id="taskheader">
+                                @Html.DisplayFor(model => item.Place)
+                            </div>
+                            <div class="row" id="taskbody">
+                                @Html.DisplayFor(model => item.Task)
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row" id="taskstatus">
+                                <span>Status</span>
+                            </div>
+                            <div class="row" id="taskbody">
+                                @if (item.Completed == "Completed")
+                                {
+                                    <span id="status" style="color:green">Completed</span>
+                                }
+                                else
+                                {
+                                    <span id="status" style="color:red">Incomplete</span>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="row" id="taskAnswer">
+                                <span class="completeBtn">Complete <i class="fa-solid fa-angle-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+
+@*Sidebar*@
+<button hidden class="btn btn-primary" id="toggleSidebar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasRight">Toggle right offcanvas</button>
+<div class="button left" id="openSidebar">
+    <div class="triangle-left"></div>
+</div>
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="button right" id="closeSidebar">
+        <div class="triangle-right"></div>
+    </div>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Hunt stats</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+        <p>Total number of tasks: @Model.Count()</p>
+        <p>Players logged in: </p>
+        <p>Players invited: @hunt.Players.Count() </p>
+        <p>Current rank: </p>
+        <p>Time remaining: @timeRemaining</p>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model ScavengeRUs.Models.Entities.Hunt
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Are you sure you want to delete @Model.HuntName?</h2>
+<div>
+    <hr />
+    <dl class="row">
+@*        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>*@
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HuntName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HuntName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

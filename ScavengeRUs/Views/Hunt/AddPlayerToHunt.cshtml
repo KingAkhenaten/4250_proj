@@ -1,0 +1,52 @@
+﻿@model ScavengeRUs.Models.Entities.ApplicationUser
+@{
+    ViewData["Title"] = "Add Player";
+    var hunt = (Hunt)ViewData["Hunt"];
+}
+<h1>Add player to @hunt.HuntName</h1>
+<h5>*will create user if not registered</h5>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddPlayerToHunt">
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" required class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" required class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" required class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" required class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccessCode!.Code" class="control-label"></label>
+                <input readonly placeholder="{PhoneNumber}/{HuntName}" asp-for="AccessCode!.Code" class="form-control" />
+                <span asp-validation-for="AccessCode!.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+      @*          <p style="margin-top:5px">*Default password is Etsupass12!</p>*@
+                <input type="submit" value="Add" class="btn btn-primary mt-3" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="ViewPlayers" asp-route-id="@hunt.Id">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

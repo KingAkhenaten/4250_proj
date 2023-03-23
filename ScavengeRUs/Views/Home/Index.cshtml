@@ -1,0 +1,41 @@
+﻿@model ScavengeRUs.Models.Entities.AccessCode
+@{
+    ViewData["Title"] = "Buc Hunt";
+}
+
+@section topSection {
+    <article class="banner">
+        <!-- title and tag line with button -->
+        <img src="/images/Campus.jpg" alt="ETSU" style="max-width: 100%; filter: brightness(50%);" />
+        <div class="banner-text">
+            <h1>Welcome to BucHunt</h1>
+        </div>
+    </article>
+}
+
+<div class="text-center">
+    <p>Enter your access code to start your scavenger hunt. At each scavenger hunt location, there will be a QR Code that must be scanned to obtain a longitude and latitude point. Hunt progress will be tracked through tasks. Enjoy hunting! </p>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <section>
+            <form asp-action="LogIn">
+                <hr />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <h3 style="text-align:center">Enter an access code.</h3>
+                <div class="form-floating">
+                    <input asp-for="Code" required class="form-control" autocomplete="current-password" aria-required="true" />
+                    <label asp-for="Code" class="form-label"></label>
+                    <span asp-validation-for="Code" class="text-danger"></span>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+
+            </form>
+        </section>
+    </div>
+</div>
+
+
