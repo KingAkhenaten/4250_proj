@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  buchunt-webapp:
+    container_name: buchunt-webapp
+    build:
+      context: ../
+      dockerfile: ScavengeRUs/Dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+                      
