@@ -150,7 +150,7 @@ namespace ScavengeRUs.Controllers
         /// <returns></returns>
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> AddPlayerToHunt([Bind(Prefix = "Id")] int huntId ,ApplicationUser user)
+        public async Task<IActionResult> AddPlayerToHunt([Bind(Prefix = "Id")] int huntId, ApplicationUser user)
         {
 
             if (huntId == 0)

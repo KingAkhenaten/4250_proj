@@ -41,7 +41,8 @@ namespace ScavengeRUs.Controllers
             //this line of code filters out all the users whose emails and phone numbers do not
             //contain the search string
             var searchResults = users.Where(user => user.Email.Contains(searchString) 
-            || !string.IsNullOrEmpty(user.PhoneNumber) && user.PhoneNumber.Contains(searchString));
+            || !string.IsNullOrEmpty(user.PhoneNumber) && user.PhoneNumber.Contains(searchString)
+            || (user.AccessCode?.Code?.Contains(searchString) ?? false));
 
             return View(searchResults);
         }

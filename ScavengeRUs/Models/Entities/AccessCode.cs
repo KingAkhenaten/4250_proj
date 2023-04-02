@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
+using MessagePack;
 
 namespace ScavengeRUs.Models.Entities
 {
