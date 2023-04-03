@@ -239,7 +239,16 @@ namespace ScavengeRUs.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
+
+            if (DateTime.Now > hunt.EndDate) //We are passing a variable here to check if the hunt has already ended
+            {
+                ViewBag.HasEnded = true; //true if it has ended
+            }
+            else
+            {
+                ViewBag.HasEnded = false; //false it not
+            }
+
             var tasks = await _huntRepo.GetLocations(hunt.HuntLocations);
                 foreach (var item in tasks)
                 {
@@ -271,6 +280,12 @@ namespace ScavengeRUs.Controllers
             //var existingLocations = await _huntRepo.GetLocations(hunt.HuntLocations);
 
             ViewData["Hunt"] = hunt;
+
+            if (DateTime.Now > hunt.EndDate)
+            {
+                return RedirectToAction("ViewTasks", new { id = hunt.Id }); //redirect if the hunt has already ended
+            }
+
             var allLocations = await _huntRepo.GetAllLocations();
             //var locations = allLocations.Except(existingLocations);
             return View(allLocations);

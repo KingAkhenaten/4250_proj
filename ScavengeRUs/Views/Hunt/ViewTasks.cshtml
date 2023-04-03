@@ -3,6 +3,7 @@
 @{
     var hunt = (Hunt?)ViewData["Hunt"];
     ViewData["Title"] = "View Players of hunt";
+    var displayEdit = !(ViewBag.HasEnded);
 }
 @{
     var timeRemaining = (hunt!.EndDate - DateTime.Now).ToString();
@@ -77,7 +78,10 @@
     <p>
         @if (User.IsInRole("Admin"))
         {
-            <a asp-action="ManageTasks" asp-route-Id="@hunt.Id" class="btn btn-danger">Manage Tasks</a>
+            @if (displayEdit) // checks if the hunt has ended, if it has, it will not diplay the button to edit it
+            {
+                <a asp-action="ManageTasks" asp-route-Id="@hunt.Id" class="btn btn-danger">Manage Tasks</a>
+            }
 
             <a asp-action="ViewPlayers" asp-route-Id="@hunt.Id" class="btn btn-danger">View Players</a>
 
