@@ -76,6 +76,7 @@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                 @Html.ActionLink("View Hunt", "ViewTasks", new {  id=item.Id  }) |
+                @Html.ActionLink("Hunt Details", "Details", new { id=item.Id })  |
                 @Html.ActionLink("Delete Hunt", "Delete", new {  id=item.Id  })
             </td>
         </tr>
