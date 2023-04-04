@@ -60,7 +60,7 @@ namespace ScavengeRUs.Controllers
             return View(hunt);
            
         }
-        /*
+        
         /// <summary>
         /// www.localhost.com/hunt/details/{huntId} This is the details view of a hunt
         /// </summary>
@@ -80,7 +80,7 @@ namespace ScavengeRUs.Controllers
             }
             return View(hunt);
         }
-        */
+        
         /// <summary>
         /// www.localhost.com/hunt/delete/{huntId} This is the get method for deleting a hunt
         /// </summary>
