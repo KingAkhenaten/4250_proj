@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ScavengeRUs.Models.Entities;
 using ScavengeRUs.Services;
 using Microsoft.AspNetCore.Identity;
+using System.Collections.Immutable;
 
 namespace ScavengeRUs.Controllers
 {
@@ -29,11 +30,35 @@ namespace ScavengeRUs.Controllers
         /// </summary>
         /// <returns></returns>
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string type)
         {
             var hunts = await _huntRepo.ReadAllAsync();
-            return View(hunts);
+            var sortedHunts = await _huntRepo.ReadAllAsync();
+
+            //if the admin didn't search for anything just return all the users
+            if (string.IsNullOrEmpty(type))
+                return View(hunts);  //Right click and go to view to see HTML
+
+            switch (type)
+            {
+                case "0":
+                    sortedHunts = hunts.OrderBy(item => item.StartDate.TimeOfDay).OrderBy(item => item.StartDate.Date.Day).OrderBy(item => item.StartDate.Date.Year).ToList();
+                    break;
+                case "1":
+                    sortedHunts = hunts.OrderByDescending(item => item.StartDate.Date.Day).OrderByDescending(item => item.StartDate.Date.Year).ToList();
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+            }
+
+            return View(sortedHunts);
         }
+
+
         /// <summary>
         /// www.localhost.com/hunt/create This is the get method for creating a hunt
         /// </summary>

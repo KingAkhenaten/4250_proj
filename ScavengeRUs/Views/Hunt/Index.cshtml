@@ -9,7 +9,17 @@
 <p>
     <a asp-action="Create" style="padding-right: 3px">Create New Hunt</a> |
     <a asp-controller="locations" asp-action="Index" style="padding-right: 3px">Manage All Tasks</a> |
-    <a asp-controller="User" asp-action="Manage" style="padding-left: 3px">Back to Admin Portal</a>
+    <a asp-controller="User" asp-action="Manage" style="padding-left: 3px">Back to Admin Portal</a> |
+    <form asp-controller="Hunt" asp-action="Index">
+    <label for="fiterList">Filter by:</label>
+            <select class="filterList" name="type" asp-items="ViewBag.Types" onchange="this.form.submit()">
+                <option value="0" >Start Date: Newest to Oldest</option>
+                <option value="1" >Start Date: Oldest to Newest</option>
+                <option value="2" >Active Hunts Only</option>
+                <option value="3" >Expired Hunts Only</option>
+                <option value="4" >Pending Hunts Only</option>
+    </select>
+    </form>
 </p>
 <table class="table">
     <thead>
