@@ -34,13 +34,15 @@ namespace ScavengeRUs.Controllers
             var users = await _userRepo.ReadAllAsync(); //Reads all the users in the db
 
             //if the admin didn't search for anything just return all the users
+            //git 
             if(string.IsNullOrEmpty(searchString))
                 return View(users);  //Right click and go to view to see HTML
 
             //this line of code filters out all the users whose emails and phone numbers do not
             //contain the search string
             var searchResults = users.Where(user => user.Email.Contains(searchString) 
-            || !string.IsNullOrEmpty(user.PhoneNumber) && user.PhoneNumber.Contains(searchString));
+            || !string.IsNullOrEmpty(user.PhoneNumber) && user.PhoneNumber.Contains(searchString)
+            || (user.AccessCode?.Code?.Contains(searchString) ?? false));
 
             return View(searchResults);
         }

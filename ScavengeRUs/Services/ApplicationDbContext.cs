@@ -23,7 +23,7 @@ namespace ScavengeRUs.Data
 
 
         /// <summary>
-        /// This sets up with cascade contraint when deleting related data in the DB
+        /// This sets up with cascade constraint when deleting related data in the DB
         /// </summary>
         /// <param name="builder"></param>
         protected override void OnModelCreating(ModelBuilder builder)
@@ -56,11 +56,6 @@ namespace ScavengeRUs.Data
                 .WithMany(a => a.AccessCodes)
                 .HasForeignKey(a => a.HuntId)
                 .OnDelete(DeleteBehavior.SetNull);
-
-            
-
-
-            
         }
     }
 }

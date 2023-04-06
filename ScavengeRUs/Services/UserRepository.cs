@@ -116,7 +116,9 @@ namespace ScavengeRUs.Services
         {
             var users = await _db.Users
                 .Include(p => p.Hunt)
+                .Include(p => p.AccessCode)
                 .ToListAsync();
+            
             foreach (var user in users)
             {
                 if (user != null)
