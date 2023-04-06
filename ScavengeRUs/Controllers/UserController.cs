@@ -18,7 +18,7 @@ namespace ScavengeRUs.Controllers
         private readonly IUserRepository _userRepo;
         string defaultPassword = "Etsupass12!";
         /// <summary>
-        /// This is the dependecy injection for the User Repository that connects to the database
+        /// This is the dependency injection for the User Repository that connects to the database
         /// </summary>
         /// <param name="userRepo"></param>
         public UserController(IUserRepository userRepo)
