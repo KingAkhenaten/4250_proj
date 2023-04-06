@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ScavengeRUs.Models.Scoreboard>
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.ApplicationUser>
 
 @{
     ViewData["Title"] = "Scoreboard";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumOfCompletedHunts)
+                @Html.DisplayNameFor(model => model.TasksCompleted)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FastestTask)
+                Fastest Task
             </th>
             <th></th>
         </tr>
@@ -28,13 +28,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NumOfCompletedHunts)
+                @Html.DisplayFor(modelItem => item.TasksCompleted.Count)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FastestTask)
+                Implement later
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
