@@ -5,6 +5,11 @@ EXPOSE 80
 EXPOSE 443
 COPY ["ScavengeRUs/ScavengeRUS.db", "."]
 
+RUN apt-get update -yq 
+RUN apt-get install curl gnupg -yq 
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install -y nodejs
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["ScavengeRUs/ScavengeRUs.csproj", "ScavengeRUs/"]
