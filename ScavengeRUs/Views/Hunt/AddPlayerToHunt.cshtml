@@ -11,7 +11,7 @@
         <form asp-action="AddPlayerToHunt">
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" required class="form-control" />
+                <input asp-for="Email" type="email" required class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>            
             <div class="form-group">
@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="PhoneNumber" class="control-label"></label>
-                <input asp-for="PhoneNumber" required class="form-control" />
+                <input asp-for="PhoneNumber" type="number" required class="form-control"/>
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
