@@ -41,17 +41,19 @@ namespace ScavengeRUs.Controllers
 
             switch (type)
             {
-                case "0":
+                case "1":
                     sortedHunts = hunts.OrderBy(item => item.StartDate.TimeOfDay).OrderBy(item => item.StartDate.Date.Day).OrderBy(item => item.StartDate.Date.Year).ToList();
                     break;
-                case "1":
+                case "2":
                     sortedHunts = hunts.OrderByDescending(item => item.StartDate.Date.Day).OrderByDescending(item => item.StartDate.Date.Year).ToList();
                     break;
-                case "2":
-                    break;
                 case "3":
+                    sortedHunts = hunts.Where(item => item.EndDate > DateTime.Now).ToList();
                     break;
                 case "4":
+                    sortedHunts = hunts.Where(item => item.EndDate < DateTime.Now).ToList();
+                    break;
+                case "5":
                     break;
             }
 

@@ -13,11 +13,12 @@
     <form asp-controller="Hunt" asp-action="Index">
     <label for="fiterList">Filter by:</label>
             <select class="filterList" name="type" asp-items="ViewBag.Types" onchange="this.form.submit()">
-                <option value="0" >Start Date: Newest to Oldest</option>
-                <option value="1" >Start Date: Oldest to Newest</option>
-                <option value="2" >Active Hunts Only</option>
-                <option value="3" >Expired Hunts Only</option>
-                <option value="4" >Pending Hunts Only</option>
+                <option value="0" ></option>
+                <option value="1">Start Date: Newest to Oldest</option>
+                <option value="2" >Start Date: Oldest to Newest</option>
+                <option value="3" >Active Hunts Only</option>
+                <option value="4" >Expired Hunts Only</option>
+                <option value="5" >Pending Hunts Only</option>
     </select>
     </form>
 </p>
