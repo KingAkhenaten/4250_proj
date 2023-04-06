@@ -353,5 +353,10 @@ namespace ScavengeRUs.Controllers
             await _huntRepo.RemoveTaskFromHunt(id, huntid);
             return RedirectToAction("ManageTasks", "Hunt", new {id=huntid});
         }
+
+        public async Task<IActionResult> Scoreboard()
+        {
+            return View();
+        }
     }
 }
