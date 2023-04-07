@@ -19,6 +19,7 @@ namespace ScavengeRUs.Models.Entities
     {
         [Key]
         public int Id { get; set; }
+        public string? ApplicationUserId { get; set; }
         [Required]
         public string Place { get; set; } = string.Empty;
         [Required]

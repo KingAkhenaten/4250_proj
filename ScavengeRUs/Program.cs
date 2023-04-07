@@ -1,14 +1,18 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using ScavengeRUs;
 using ScavengeRUs.Data;
 using ScavengeRUs.Models.Entities;
 using ScavengeRUs.Services;
+using ScavengeRUs.Utils;
+using ScavengeRUs.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
@@ -23,6 +27,8 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IHuntRepository, HuntRepository>();
+builder.Services.AddScoped<GetCompletedTasksForUserQuery>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,5 +55,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}/{taskid?}/{answer?}");
 app.MapRazorPages();
+app.MapHub<BucStatsHub>("/bucstats");
 
 app.Run();
