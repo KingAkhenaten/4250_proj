@@ -6,6 +6,7 @@ using ScavengeRUs.Services;
 using System;
 using System.Security.Claims;
 
+
 namespace ScavengeRUs.Controllers
 {
 
@@ -32,11 +33,12 @@ namespace ScavengeRUs.Controllers
         public async Task<IActionResult> Manage(string searchString)
         {
             var users = await _userRepo.ReadAllAsync(); //Reads all the users in the db
-
+            var locations = Utils.StatTools.GetCompletedTasks("1581f3f2-ba83-4aa0-b443-7bbec0d3d5ca");
             //if the admin didn't search for anything just return all the users
             //git 
             if(string.IsNullOrEmpty(searchString))
                 return View(users);  //Right click and go to view to see HTML
+                
 
             //this line of code filters out all the users whose emails and phone numbers do not
             //contain the search string
