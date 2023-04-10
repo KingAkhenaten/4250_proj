@@ -60,22 +60,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
-            <td>
+            <td class="endDate"> 
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
-            <td>
-                    @{
-                        var timeRemaining = (item.EndDate - DateTime.Now).ToString();
-                        if (TimeSpan.Parse(timeRemaining).Seconds<0)
-                        {
-                            timeRemaining = "Ended";
-                        }
-                        else
-                        {
-                            timeRemaining = timeRemaining.Substring(0, timeRemaining.LastIndexOf("."));
-                        }
-                }
-                    @Html.DisplayFor(modelItem => timeRemaining)
+            <td class="tick">
+                @* Done in Javascript script below *@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Players.Count)
@@ -93,3 +82,52 @@
 }
     </tbody>
 </table>
+
+
+<script type="text/javascript" async>
+
+    //Get Time Remaining element
+    var times = document.getElementsByClassName("tick");
+
+    //Get the end date from the Ending Date column in the table
+    var getEndDate = document.getElementsByClassName('endDate');
+
+    //Update the time remaining every 0.5 seconds
+    var x = setInterval(function () {
+
+        //Loop through each hunt in the table
+        for(var i = 0; i < times.length; i++)
+        {
+            //Convert getEndDate to DateTime object
+            var endDate = new Date(getEndDate[i].textContent).getTime();
+
+            //Get current date and time
+            var now = new Date().getTime();
+
+            //Call timetick to create a counter for every hunt
+            times[i].innerHTML = timetick(endDate, now);
+        }
+    }, 500);
+
+    function timetick(endDate, now)
+    {
+        //Get time between current time and end date
+        var distance = endDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        //If the hunt has ended, return the word Ended
+        if (distance < 0) {
+            return "Ended"
+        }
+        //else, return the current time remaining
+        else {
+            return days + ":" + hours + ":"
+                + minutes + ":" + seconds;
+        }       
+    }
+</script>
