@@ -41,17 +41,20 @@ namespace ScavengeRUs.Controllers
 
             switch (type)
             {
-                case "0":
-                    sortedHunts = hunts.OrderBy(item => item.StartDate.TimeOfDay).OrderBy(item => item.StartDate.Date.Day).OrderBy(item => item.StartDate.Date.Year).ToList();
-                    break;
                 case "1":
-                    sortedHunts = hunts.OrderByDescending(item => item.StartDate.Date.Day).OrderByDescending(item => item.StartDate.Date.Year).ToList();
+                    sortedHunts = hunts.OrderByDescending(item => item.StartDate).ToList();
                     break;
                 case "2":
+                    sortedHunts = hunts.OrderBy(item => item.StartDate).ToList();
                     break;
                 case "3":
+                    sortedHunts = hunts.Where(item => item.EndDate > DateTime.Now).ToList();
                     break;
                 case "4":
+                    sortedHunts = hunts.Where(item => item.EndDate < DateTime.Now).ToList();
+                    break;
+                case "5":
+                    sortedHunts = hunts.Where(item => item.StartDate > DateTime.Now).ToList();
                     break;
             }
 
@@ -352,6 +355,17 @@ namespace ScavengeRUs.Controllers
         {
             await _huntRepo.RemoveTaskFromHunt(id, huntid);
             return RedirectToAction("ManageTasks", "Hunt", new {id=huntid});
+        }
+
+        public async Task<IActionResult> Scoreboard([Bind(Prefix = "id")]int huntid)
+        {
+            var hunt = await _huntRepo.ReadAsync(huntid);
+            if (hunt == null)
+            {
+                return RedirectToAction("ViewTasks", new { id = huntid });
+            }
+            var players = hunt.Players;
+            return View(players);
         }
     }
 }

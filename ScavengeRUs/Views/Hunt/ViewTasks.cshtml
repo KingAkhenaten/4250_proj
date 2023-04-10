@@ -76,6 +76,7 @@
         </div>
     </div>
     <p>
+        <a asp-action="Scoreboard" asp-route-Id="@hunt.Id" class="btn btn-warning">View Scoreboard</a>
         @if (User.IsInRole("Admin"))
         {
             @if (displayEdit) // checks if the hunt has ended, if it has, it will not diplay the button to edit it
