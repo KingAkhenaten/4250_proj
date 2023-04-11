@@ -33,7 +33,6 @@ namespace ScavengeRUs.Controllers
         public async Task<IActionResult> Manage(string searchString)
         {
             var users = await _userRepo.ReadAllAsync(); //Reads all the users in the db
-            var locations = Utils.StatTools.GetCompletedTasks("1581f3f2-ba83-4aa0-b443-7bbec0d3d5ca");
             //if the admin didn't search for anything just return all the users
             //git 
             if(string.IsNullOrEmpty(searchString))
