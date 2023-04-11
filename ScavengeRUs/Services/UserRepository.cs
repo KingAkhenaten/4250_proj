@@ -41,6 +41,14 @@ namespace ScavengeRUs.Services
             if (user != null)
             {
                 _db.Entry(user).Reference(h => h.Hunt).Load();
+                _db.Entry(user).Collection(l => l.TasksCompleted!).Load();
+                if(user.TasksCompleted != null)
+                {
+                    foreach (var task in user.TasksCompleted)
+                    {
+                        _db.Entry(task).Reference(l => l.location).Load();
+                    }
+                }
                 user.Roles = await _userManager.GetRolesAsync(user);
                 await _db.SaveChangesAsync();   
             }

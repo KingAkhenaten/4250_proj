@@ -236,7 +236,14 @@ namespace ScavengeRUs.Controllers
             var location = await _context.Location.FirstOrDefaultAsync(m => m.Id == taskid);                //gets the task
             if (answer != null && answer.Equals(location?.Answer, StringComparison.OrdinalIgnoreCase))      //check is answer matches
             {
-                currentUser?.TasksCompleted!.Add(location); //Update the players completed tasks
+                LocationUser locUser = new LocationUser
+                {
+                    locationId = location.Id,
+                    location = location,
+                    userId = currentUser.Id,
+                    user = currentUser
+                };
+                currentUser?.TasksCompleted!.Add(locUser); //Update the players completed tasks
                 await _context.SaveChangesAsync();          
                 return Json(new { success = true});
             }

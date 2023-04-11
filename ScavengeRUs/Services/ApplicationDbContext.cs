@@ -20,6 +20,7 @@ namespace ScavengeRUs.Data
         public DbSet<Hunt> Hunts => Set<Hunt>();
         public DbSet<HuntLocation> HuntLocation => Set<HuntLocation>();
         public DbSet<AccessCode> AccessCodes => Set<AccessCode>();
+        public DbSet<LocationUser> locationUser => Set<LocationUser>();
 
 
         /// <summary>
