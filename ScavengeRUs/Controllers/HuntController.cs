@@ -281,10 +281,14 @@ namespace ScavengeRUs.Controllers
                 {
                     if (currentUser.TasksCompleted.Count() > 0)
                     {
-                        var usertask = currentUser.TasksCompleted.FirstOrDefault(a => a.Id == item.Id);
-                        if (usertask != null && tasks.Contains(usertask))
+                        var usertask = currentUser.TasksCompleted.FirstOrDefault(a => a.locationId == item.Id);
+                        if (usertask != null)
                         {
                             item.Completed = "Completed";
+                        }
+                        else
+                        {
+                            item.Completed = "Not completed";
                         }
                     }
                     else

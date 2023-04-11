@@ -39,5 +39,6 @@ namespace ScavengeRUs.Models.Entities
         public string? QRCode { get; set; }
         public string? Answer { get; set; }
         public ICollection<HuntLocation> LocationHunts { get; set; } = new List<HuntLocation>();
+        public ICollection<LocationUser> LocationUsers { get; set; } = new List<LocationUser>();
     }
 }

@@ -51,10 +51,22 @@ namespace ScavengeRUs.Services
         {
             var hunt = await _db.Hunts
                 .Include(l => l.HuntLocations)
+                .Include(l => l.Players)
                 .FirstOrDefaultAsync(a => a.Id == huntId);
 
             if (hunt != null)
             {
+                foreach (var player in hunt.Players)
+                {
+                    _db.Users.Include(u => u.TasksCompleted).Load();
+                    if (player.TasksCompleted != null)
+                    {
+                        foreach (var task in player.TasksCompleted)
+                        {
+                            _db.locationUser.Include(u => u.location).Load();
+                        }
+                    }
+                }
                 _db.Entry(hunt)
                     .Collection(p => p.Players)
                     .Load();
