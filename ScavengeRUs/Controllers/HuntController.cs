@@ -364,6 +364,7 @@ namespace ScavengeRUs.Controllers
             {
                 return RedirectToAction("ViewTasks", new { id = huntid });
             }
+            ViewData["hunt"] = hunt;
             var players = hunt.Players;
             return View(players);
         }
