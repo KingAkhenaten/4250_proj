@@ -157,3 +157,21 @@ body {
 /*.navbar-toggler {
     background-color: #191970;
 }*/
+
+.bg-etsu-blue {
+    --bs-bg-opacity: 1;
+    /* this is hex #041E42 */
+    background-color: rgba(4, 30, 66, var(--bs-bg-opacity)) !important;
+}
+
+.bg-etsu-gold {
+    --bs-bg-opacity: 1;
+    /* this is hex #FFC72C */
+    background-color: rgba(255, 199, 44, var(--bs-bg-opacity)) !important;
+}
+
+.bg-etsu-ltgold {
+    --bs-bg-opacity: 1;
+    /* this is hex #FDD757 */
+    background-color: rgba(253, 215, 87, var(--bs-bg-opacity)) !important;
+}
