@@ -263,6 +263,7 @@ namespace ScavengeRUs.Controllers
             var currentUser = await _userRepo.ReadAsync(User.Identity?.Name!);
             var hunt = await _huntRepo.ReadHuntWithRelatedData(huntid);
             ViewData["Hunt"] = hunt;
+            ViewData["Player"] = currentUser;
             if (hunt == null)
             {
                 return RedirectToAction("Index");
@@ -364,6 +365,8 @@ namespace ScavengeRUs.Controllers
             {
                 return RedirectToAction("ViewTasks", new { id = huntid });
             }
+            ViewData["hunt"] = hunt;
+            ViewData["player"] = await _userRepo.ReadAsync(User.Identity?.Name!);
             var players = hunt.Players;
             return View(players);
         }

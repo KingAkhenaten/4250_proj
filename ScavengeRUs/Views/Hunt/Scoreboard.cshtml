@@ -2,46 +2,49 @@
 
 @{
     ViewData["Title"] = "Scoreboard";
+    var hunt = (Hunt)ViewData["hunt"];
+    var user = (ApplicationUser?)ViewData["Player"];
 }
 
-<h1>Scoreboard</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h1>Scoreboard for @hunt.HuntName</h1>
+<a asp-action="ViewTasks" asp-route-Id="@hunt.Id" class="btn bg-etsu-gold">Go Back to Tasks</a>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+                Username
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TasksCompleted)
+                Number of Tasks Completed
             </th>
-            <th>
-                Fastest Task
-            </th>
-            <th></th>
+            <!--Implement timestamps for fastest task and ranking-->
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@{
+/*
+ *  This foreach loop will verify the tasks completed match up with the tasks in the hunt.
+ *  It will then increment a counter to display how many tasks they have completed.
+ */
+}
+@foreach (var player in Model) {
+    var numberCompleted = 0;
+    foreach (var task in hunt.HuntLocations)
+    {
+        if (player.TasksCompleted.Contains(task.Location))
+        {
+            numberCompleted++;
+        }
+    }
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.UserName)
+                @Html.DisplayFor(modelItem => player.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TasksCompleted.Count)
-            </td>
-            <td>
-                Implement later
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @numberCompleted.ToString()
             </td>
         </tr>
+
 }
     </tbody>
 </table>

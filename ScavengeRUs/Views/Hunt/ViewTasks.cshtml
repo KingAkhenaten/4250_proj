@@ -4,6 +4,28 @@
     var hunt = (Hunt?)ViewData["Hunt"];
     ViewData["Title"] = "View Players of hunt";
     var displayEdit = !(ViewBag.HasEnded);
+    var user = (ApplicationUser?)ViewData["Player"];
+
+    //This code block will add the tasks the user has completed that relate to this hunt to the variable playerTasksCompleted
+    //I am doing this because when the user's completed tasks are read from the database, it gets all tasks, even if it isn't for this hunt.
+    var playerTasksCompleted = new List<Location>();
+    if(user != null && user.TasksCompleted != null)
+    {
+        foreach (var task in Model)
+        {
+            if (user.TasksCompleted.Contains(task))
+            {
+                playerTasksCompleted.Add(task);
+            }
+        }
+    }
+
+    //Calculates the percentage of tasks the user has completed out of the total tasks of the hunt.
+    var barPercent = "0%";
+    if(playerTasksCompleted.Count != 0)
+    {
+        barPercent = ((double)playerTasksCompleted.Count / Model.ToList().Count).ToString("P02");
+    }
 }
 @{
     var timeRemaining = (hunt!.EndDate - DateTime.Now).ToString();
@@ -57,7 +79,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" onClick="setTimeout(() => {document.location.reload();}, 3000);">
                         Enter
                     </button>
                     <button type="reset" class="btn btn-secondary">Clear</button>
@@ -76,7 +98,7 @@
         </div>
     </div>
     <p>
-        <a asp-action="Scoreboard" asp-route-Id="@hunt.Id" class="btn btn-warning">View Scoreboard</a>
+        <a asp-action="Scoreboard" asp-route-Id="@hunt.Id" class="btn bg-etsu-gold">View Scoreboard</a>
         @if (User.IsInRole("Admin"))
         {
             @if (displayEdit) // checks if the hunt has ended, if it has, it will not diplay the button to edit it
@@ -96,6 +118,18 @@
     <hr />
     <br />
     <p id="huntHeader">Tasks for @hunt.HuntName</p>
+
+    <div class="progress position-relative bg-etsu-gold mb-2">
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-etsu-blue" style="width:@barPercent" role="progressbar" aria-valuenow="@barPercent" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="d-flex flex-row notch-container">
+            @{
+                foreach (var task in Model)
+                {
+                    <div class="notch" style="width:calc(100% / @Model.Count())"></div>
+                }
+            }
+        </div>
+    </div>
 
     <div class="list-group">
         @if (!Model.Any())
