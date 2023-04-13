@@ -9,7 +9,7 @@
     var user = await userRepo.ReadAsync(User.Identity?.Name!);
     var fullName = $"{user!.FirstName} {user!.LastName}";
     <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @fullName!</a>
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
     </li>
     <li class="nav-item">
             @if (User.IsInRole("Admin"))
@@ -17,9 +17,9 @@
                 <a class="nav-link text-dark" asp-controller="User" asp-action="Manage" title="Manage">Admin Portal</a>
             }
     </li>
-    <li class="nav-item">
+    @*<li class="nav-item">
         <a class="nav-link text-dark" asp-controller="User" asp-action="Profile" title="Profile">Profile</a>
-    </li>
+    </li>*@
         <li class="nav-item">
         <form  class="" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
             <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
