@@ -24,7 +24,7 @@
     var barPercent = "0%";
     if(playerTasksCompleted.Count != 0)
     {
-        barPercent = ((double)playerTasksCompleted.Count / Model.ToList().Count).ToString("P0");
+        barPercent = ((double)playerTasksCompleted.Count / Model.ToList().Count).ToString("P02");
     }
 }
 @{
@@ -118,10 +118,19 @@
     <hr />
     <br />
     <p id="huntHeader">Tasks for @hunt.HuntName</p>
-    <div class="progress bg-etsu-gold mb-2">
+
+    <div class="progress position-relative bg-etsu-gold mb-2">
         <div class="progress-bar progress-bar-striped progress-bar-animated bg-etsu-blue" style="width:@barPercent" role="progressbar" aria-valuenow="@barPercent" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="d-flex flex-row notch-container">
+            @{
+                foreach (var task in Model)
+                {
+                    <div class="notch" style="width:calc(100% / @Model.Count())"></div>
+                }
+            }
+        </div>
     </div>
-    <br />
+
     <div class="list-group">
         @if (!Model.Any())
         {

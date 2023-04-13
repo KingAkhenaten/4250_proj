@@ -154,10 +154,6 @@ body {
     background-color: #191970;
 }
 
-/*.navbar-toggler {
-    background-color: #191970;
-}*/
-
 .bg-etsu-blue {
     --bs-bg-opacity: 1;
     /* this is hex #041E42 */
@@ -174,4 +170,20 @@ body {
     --bs-bg-opacity: 1;
     /* this is hex #FDD757 */
     background-color: rgba(253, 215, 87, var(--bs-bg-opacity)) !important;
+}
+
+/* Notches for the progess bar */
+.notch-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* don't need a notch on the end */
+.notch:not(:last-child) {
+    border-right: 6px solid var(--bs-body-bg);
+    height: 100%;
+    line-height: normal !important;
 }
