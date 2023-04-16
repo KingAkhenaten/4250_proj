@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ScavengeRUs.Models.Entities;
 using ScavengeRUs.Services;
-using Microsoft.AspNetCore.Identity;
 using System.Collections.Immutable;
 using System.Net.Mail;
 
@@ -81,6 +80,7 @@ namespace ScavengeRUs.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Hunt hunt)
         {
+            hunt.URL = $"Hunt/ViewTasks/{hunt.Id.ToString()}";
             if (ModelState.IsValid)
             {
                 await _huntRepo.CreateAsync(hunt);
@@ -261,9 +261,12 @@ namespace ScavengeRUs.Controllers
         /// <param name="id"></param>
         /// <param name="huntid"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Player, Admin")]
         public async Task<IActionResult> ViewTasks([Bind(Prefix = "Id")] int huntid)
         {
+            if(!User.Identity!.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var currentUser = await _userRepo.ReadAsync(User.Identity?.Name!);
             var hunt = await _huntRepo.ReadHuntWithRelatedData(huntid);
             ViewData["Hunt"] = hunt;
