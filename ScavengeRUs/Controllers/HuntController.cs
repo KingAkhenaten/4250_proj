@@ -378,7 +378,8 @@ namespace ScavengeRUs.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> EmailSend(string userName, int huntId)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> EmailSend([FromForm]string userName, int huntId)
         {
             var user = await _userRepo.ReadAsync(userName);
             var hunt = await _huntRepo.ReadAsync(huntId);

@@ -159,7 +159,32 @@ function distanceToStringMetric(distInMetres) {
     }
 }
 
-
+var emailForm = document.querySelector("#emailForm");
+if (emailForm != null) {
+    emailForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        var formData = {
+            userName: $("#username").val(),
+            huntId: $("#huntId").val(),
+        };
+        $.ajax({
+            type: "POST",
+            url: "../EmailSend",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+                if (response.success) {
+                    alert("Email Sent!");
+                }
+                else {
+                    alert("Email Unsuccessful");
+                }
+            },
+        }).done(function (data) {
+            console.log(data);
+        });
+    });
+}
 var offcampus = document.getElementById('offcanvas');
 var sideBarOpen = document.getElementById("openSidebar"); //Open sidebar on the hunt page
 sideBarOpen.addEventListener('click', e => {
@@ -235,35 +260,3 @@ sideBarClose.addEventListener('click', e => {
     });
 
 }());
-
-
-const emailEvent = document.querySelector("#emailBtn");
-
-emailEvent.addEventListener("submit", (e) => {
-
-    console.log("send")
-    (function (event) {
-        var formData = {
-            userName: $("#UserId").val(),
-            huntId: $("#HuntId").val(),
-        };
-        $.ajax({
-            type: "POST",
-            url: "../EmailPlayer",
-            data: formData,
-            dataType: "json",
-            success: function (response) {
-                if (response.success) {
-                    alert("Email Sent!");
-                }
-                else {
-                    alert("Email Unsuccessful");
-                }
-            },
-        }).done(function (data) {
-            console.log(data);
-        });
-
-        event.preventDefault();
-    });
-});
