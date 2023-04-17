@@ -173,6 +173,7 @@ sideBarClose.addEventListener('click', e => {
     document.getElementById("taskarea").style.marginRight = "0";
 });
 
+
 (function _homeIndexMain() {        //This function handles the modal on the hunt page
     const createTaskModalDOM = document.querySelector("#createTaskModal");
     const createTaskModal = new bootstrap.Modal(createTaskModalDOM);
@@ -232,4 +233,37 @@ sideBarClose.addEventListener('click', e => {
         });
         event.preventDefault();
     });
+
 }());
+
+
+const emailEvent = document.querySelector("#emailBtn");
+
+emailEvent.addEventListener("submit", (e) => {
+
+    console.log("send")
+    (function (event) {
+        var formData = {
+            userName: $("#UserId").val(),
+            huntId: $("#HuntId").val(),
+        };
+        $.ajax({
+            type: "POST",
+            url: "../EmailPlayer",
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+                if (response.success) {
+                    alert("Email Sent!");
+                }
+                else {
+                    alert("Email Unsuccessful");
+                }
+            },
+        }).done(function (data) {
+            console.log(data);
+        });
+
+        event.preventDefault();
+    });
+});

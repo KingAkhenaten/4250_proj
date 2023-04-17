@@ -158,6 +158,7 @@ namespace ScavengeRUs.Controllers
 
             return View(hunt.Players);
         }
+        
         /// <summary>
         /// www.localhost.com/hunt/addplayertohunt{huntid} Get method for adding a player to a hunt. 
         /// </summary>
@@ -222,9 +223,7 @@ namespace ScavengeRUs.Controllers
                 newUser.AccessCode.Users.Add(newUser);
             }
             await _huntRepo.AddUserToHunt(huntId, newUser); //This methods adds the user to the database and adds the database relationship to a hunt.
-            //email method call
-            bool emailSent = EmailSend(newUser, hunt);
-            ViewData["emailSent"] = emailSent;
+      
             return RedirectToAction("Index");
         }
         /// <summary>
@@ -378,8 +377,12 @@ namespace ScavengeRUs.Controllers
             return View(players);
         }
 
-        public bool EmailSend(ApplicationUser user, Hunt hunt)
+        [HttpPost]
+        public async Task<IActionResult> EmailSend(string userName, int huntId)
         {
+            var user = await _userRepo.ReadAsync(userName);
+            var hunt = await _huntRepo.ReadAsync(huntId);
+
             string to = user.Email;
             string from = "chrisseals9893@gmail.com";
             string subject = "BucHunt Invite!";
@@ -393,13 +396,13 @@ namespace ScavengeRUs.Controllers
             {
                 client.Send(message);
                 Console.WriteLine("Email sent successfully!");
-                return true;
+                    return Json(new { success = true });
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Exception caught in CreateTestMessage1(): {0}",
                             ex.ToString());
-                return false;
+                return Json(new { success = false });
             }
         }
     }
