@@ -66,6 +66,13 @@
                 <td>
                     @Html.ActionLink("Revoke Access", "RemoveUser", new { id=item.UserName, huntId=hunt.Id })
                 </td>
+                <td>
+                    <form id="emailForm">
+                        <input name="username" hidden id="username" value="@item.UserName" />
+                        <input name="huntId" hidden id="huntId" value="@hunt.Id" />
+                        <input type="submit" value="Send Email" class="btn btn-primary"/>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>

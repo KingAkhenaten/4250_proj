@@ -37,7 +37,9 @@ namespace ScavengeRUs.Services
         /// <returns></returns>
         public async Task<ApplicationUser?> ReadAsync(string userName)
         {
-            var user =  _db.Users.FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
+            var user =  _db.Users
+                .Include(a => a.AccessCode)
+                .FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
             if (user != null)
             {
                 _db.Entry(user).Reference(h => h.Hunt).Load();
