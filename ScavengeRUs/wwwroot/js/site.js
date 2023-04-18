@@ -159,9 +159,37 @@ function distanceToStringMetric(distInMetres) {
     }
 }
 
+
+function emailSend(username, huntId) {
+
+    console.log("Email method called");
+    var formData = {
+        userName: username,
+        huntId: huntId
+    };
+    $.ajax({
+        type: "POST",
+        url: "../EmailSend",
+        data: formData,
+        dataType: "json",
+        success: function (response) {
+            if (response.success) {
+                alert("Email Sent!");
+            }
+            else {
+                alert("Email Unsuccessful");
+            }
+        },
+    }).done(function (data) {
+        console.log(data);
+    });
+}
+
+/*
 var emailForm = document.querySelector("#emailForm");
 if (emailForm != null) {
     emailForm.addEventListener("submit", async (e) => {
+        console.log("Email method called");
         e.preventDefault();
         var formData = {
             userName: $("#username").val(),
@@ -184,19 +212,23 @@ if (emailForm != null) {
             console.log(data);
         });
     });
-}
+}*/
 var offcampus = document.getElementById('offcanvas');
 var sideBarOpen = document.getElementById("openSidebar"); //Open sidebar on the hunt page
-sideBarOpen.addEventListener('click', e => {
-    document.getElementById("toggleSidebar").click();
-    document.getElementById("taskarea").style.marginRight = "0px";
-})
+if (sideBarOpen != null) {
+    sideBarOpen.addEventListener('click', e => {
+        document.getElementById("toggleSidebar").click();
+        document.getElementById("taskarea").style.marginRight = "0px";
+    })
+}
 
 var sideBarClose = document.getElementById("closeSidebar"); //Close sidebar on hunt page
-sideBarClose.addEventListener('click', e => {
-    document.getElementById("toggleSidebar").click();
-    document.getElementById("taskarea").style.marginRight = "0";
-});
+if (sideBarClose != null) {
+    sideBarClose.addEventListener('click', e => {
+        document.getElementById("toggleSidebar").click();
+        document.getElementById("taskarea").style.marginRight = "0";
+    });
+}
 
 
 (function _homeIndexMain() {        //This function handles the modal on the hunt page
