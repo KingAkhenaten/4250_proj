@@ -50,7 +50,7 @@ namespace ScavengeRUs.Controllers
             {
                 return View("Error", new ErrorViewModel() { Text = "Enter a valid access code." });
             }
-            var timeRemaining = (user.Hunt!.EndDate - DateTime.Now).ToString();
+            // var timeRemaining = (user.Hunt!.EndDate - DateTime.Now).ToString();
             if (TimeSpan.Parse(timeRemaining).Seconds < 0)
             {
                 return View("Error", new ErrorViewModel() { Text = "This access code has expired." });
