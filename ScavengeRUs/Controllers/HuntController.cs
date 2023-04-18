@@ -208,7 +208,7 @@ namespace ScavengeRUs.Controllers
             {
                 newUser.AccessCode = new AccessCode()
                 {
-                    Hunt = hunt,                        //Setting foriegn key
+                    Hunt = hunt,                                                                            //Setting foriegn key
                     Code = $"{newUser.PhoneNumber}/{hunt.HuntName!.Replace(" ", string.Empty)}",            //This is the access code generation
                 };
                 newUser.AccessCode.Users.Add(newUser);  //Setting foriegn key
@@ -278,6 +278,7 @@ namespace ScavengeRUs.Controllers
             if (DateTime.Now > hunt.EndDate) //We are passing a variable here to check if the hunt has already ended
             {
                 ViewBag.HasEnded = true; //true if it has ended
+
             }
             else
             {
