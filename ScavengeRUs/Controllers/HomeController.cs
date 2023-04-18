@@ -58,7 +58,7 @@ namespace ScavengeRUs.Controllers
             }
             */
             await _signInRepo.SignInAsync(user, false);
-            return RedirectToAction("ViewTasks", "Hunt", new {id = user.Hunt.Id}); // change to redirect to view of hunts
+            return RedirectToAction("ViewTasks", "Hunt", new {id = user.Hunt?.Id}); // change to redirect to view of hunts
         }
         /// <summary>
         /// This is the landing page for www.localhost.com/Home/Privacy
