@@ -190,6 +190,7 @@ namespace ScavengeRUs.Controllers
             var hunt = await _huntRepo.ReadAsync(huntId);
             var existingUser = await _userRepo.ReadAsync(user.Email);
             var newUser = new ApplicationUser();
+
             if (existingUser == null)
             {
                 newUser.Email = user.Email;
@@ -208,8 +209,9 @@ namespace ScavengeRUs.Controllers
             {
                 newUser.AccessCode = new AccessCode()
                 {
-                    Hunt = hunt,                                                                            //Setting foriegn key
-                    Code = $"{newUser.PhoneNumber}/{hunt.HuntName!.Replace(" ", string.Empty)}",            //This is the access code generation
+                    Hunt = hunt,
+                    HuntId = hunt.Id,                 //Setting foriegn key
+                    Code = $"{newUser.PhoneNumber}" //{hunt.HuntName!.Replace(" ", string.Empty)}",            //This is the access code generation
                 };
                 newUser.AccessCode.Users.Add(newUser);  //Setting foriegn key
             }
@@ -218,6 +220,7 @@ namespace ScavengeRUs.Controllers
                 newUser.AccessCode = new AccessCode()
                 {
                     Hunt = hunt,
+                    HuntId = hunt.Id,
                     Code = newUser.AccessCode.Code,
                 };
                 newUser.AccessCode.Users.Add(newUser);
@@ -264,7 +267,10 @@ namespace ScavengeRUs.Controllers
         {
             if(!User.Identity!.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", new
+                {
+                    id = huntid
+                }) ; 
             }
             var currentUser = await _userRepo.ReadAsync(User.Identity?.Name!);
             var hunt = await _huntRepo.ReadHuntWithRelatedData(huntid);
