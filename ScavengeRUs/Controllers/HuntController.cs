@@ -209,9 +209,10 @@ namespace ScavengeRUs.Controllers
             {
                 newUser.AccessCode = new AccessCode()
                 {
+                    //added setter for hunt ID
                     Hunt = hunt,
                     HuntId = hunt.Id,                 //Setting foriegn key
-                    Code = $"{newUser.PhoneNumber}" //{hunt.HuntName!.Replace(" ", string.Empty)}",            //This is the access code generation
+                    Code = $"{newUser.PhoneNumber}"   //{hunt.HuntName!.Replace(" ", string.Empty)}",            //This is the access code generation
                 };
                 newUser.AccessCode.Users.Add(newUser);  //Setting foriegn key
             }
@@ -219,6 +220,7 @@ namespace ScavengeRUs.Controllers
             {
                 newUser.AccessCode = new AccessCode()
                 {
+                    //added setter for hunt ID
                     Hunt = hunt,
                     HuntId = hunt.Id,
                     Code = newUser.AccessCode.Code,
@@ -267,6 +269,7 @@ namespace ScavengeRUs.Controllers
         {
             if(!User.Identity!.IsAuthenticated)
             {
+                //changed the hunt URL to include unique ID for each hunt
                 return RedirectToAction("Index", "Home", new
                 {
                     id = huntid
