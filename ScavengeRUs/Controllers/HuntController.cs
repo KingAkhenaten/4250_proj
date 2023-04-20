@@ -190,6 +190,7 @@ namespace ScavengeRUs.Controllers
             var hunt = await _huntRepo.ReadAsync(huntId);
             var existingUser = await _userRepo.ReadAsync(user.Email);
             var newUser = new ApplicationUser();
+
             if (existingUser == null)
             {
                 newUser.Email = user.Email;
@@ -208,8 +209,10 @@ namespace ScavengeRUs.Controllers
             {
                 newUser.AccessCode = new AccessCode()
                 {
-                    Hunt = hunt,                                                                            //Setting foriegn key
-                    Code = $"{newUser.PhoneNumber}/{hunt.HuntName!.Replace(" ", string.Empty)}",            //This is the access code generation
+                    //added setter for hunt ID
+                    Hunt = hunt,
+                    HuntId = hunt.Id,                 //Setting foriegn key
+                    Code = $"{newUser.PhoneNumber}"   //{hunt.HuntName!.Replace(" ", string.Empty)}",            //This is the access code generation
                 };
                 newUser.AccessCode.Users.Add(newUser);  //Setting foriegn key
             }
@@ -217,7 +220,9 @@ namespace ScavengeRUs.Controllers
             {
                 newUser.AccessCode = new AccessCode()
                 {
+                    //added setter for hunt ID
                     Hunt = hunt,
+                    HuntId = hunt.Id,
                     Code = newUser.AccessCode.Code,
                 };
                 newUser.AccessCode.Users.Add(newUser);
@@ -264,7 +269,11 @@ namespace ScavengeRUs.Controllers
         {
             if(!User.Identity!.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Home");
+                //changed the hunt URL to include unique ID for each hunt
+                return RedirectToAction("Index", "Home", new
+                {
+                    id = huntid
+                }) ; 
             }
             var currentUser = await _userRepo.ReadAsync(User.Identity?.Name!);
             var hunt = await _huntRepo.ReadHuntWithRelatedData(huntid);
@@ -386,14 +395,14 @@ namespace ScavengeRUs.Controllers
             var hunt = await _huntRepo.ReadAsync(huntId);
 
             string to = user.Email;
-            string from = "chrisseals9893@gmail.com";
+            string from = "buchunt69@gmail.com";
             string subject = "BucHunt Invite!";
             string body = $"Your access code to {hunt.HuntName} is: {user.AccessCode!.Code}\nYour URL is: BADLINK";
             MailMessage message = new MailMessage(from, to, subject, body);
             SmtpClient client = new SmtpClient("smtp.elasticemail.com", 2525);
             // Credentials are necessary if the server requires the client 
             // to authenticate before it will send e-mail on the client's behalf.
-            client.Credentials = new System.Net.NetworkCredential("chrisseals9893@gmail.com", "435E009F769EBB649B563DA092D862EC2439");
+            client.Credentials = new System.Net.NetworkCredential("buchunt69@gmail.com", "3650F08D120A1853AE0EA1F2F4DBF0EA674A");
             try
             {
                 client.Send(message);
