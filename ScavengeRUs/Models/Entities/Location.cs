@@ -8,7 +8,14 @@ namespace ScavengeRUs.Models.Entities
     /// and a Question (Task) for that location. It will be displayed when the user reaches the actual
     /// hunt part of the site
     /// </summary>
-    public class Location
+    public interface ILocations
+    {
+        Task<Location?> GetLocations(string userId);
+
+    }
+
+    
+    public class Location 
     {
         [Key]
         public int Id { get; set; }

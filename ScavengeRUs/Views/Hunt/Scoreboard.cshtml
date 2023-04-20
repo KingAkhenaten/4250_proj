@@ -1,0 +1,50 @@
+﻿@model IEnumerable<ScavengeRUs.Models.Entities.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Scoreboard";
+    var hunt = (Hunt)ViewData["hunt"];
+    var user = (ApplicationUser?)ViewData["Player"];
+}
+
+<h1>Scoreboard for @hunt.HuntName</h1>
+<a asp-action="ViewTasks" asp-route-Id="@hunt.Id" class="btn bg-etsu-gold">Go Back to Tasks</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Username
+            </th>
+            <th>
+                Number of Tasks Completed
+            </th>
+            <!--Implement timestamps for fastest task and ranking-->
+        </tr>
+    </thead>
+    <tbody>
+@{
+/*
+ *  This foreach loop will verify the tasks completed match up with the tasks in the hunt.
+ *  It will then increment a counter to display how many tasks they have completed.
+ */
+}
+@foreach (var player in Model) {
+    var numberCompleted = 0;
+    foreach (var task in hunt.HuntLocations)
+    {
+        if (player.TasksCompleted.Contains(task.Location))
+        {
+            numberCompleted++;
+        }
+    }
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => player.UserName)
+            </td>
+            <td>
+                @numberCompleted.ToString()
+            </td>
+        </tr>
+
+}
+    </tbody>
+</table>

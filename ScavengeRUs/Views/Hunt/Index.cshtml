@@ -9,7 +9,18 @@
 <p>
     <a asp-action="Create" style="padding-right: 3px">Create New Hunt</a> |
     <a asp-controller="locations" asp-action="Index" style="padding-right: 3px">Manage All Tasks</a> |
-    <a asp-controller="User" asp-action="Manage" style="padding-left: 3px">Back to Admin Portal</a>
+    <a asp-controller="User" asp-action="Manage" style="padding-left: 3px">Back to Admin Portal</a> |
+    <form asp-controller="Hunt" asp-action="Index">
+    <label for="fiterList">Filter by:</label>
+            <select class="filterList" name="type" asp-items="ViewBag.Types" onchange="this.form.submit()">
+                <option value="0" ></option>
+                <option value="1">Start Date: Newest to Oldest</option>
+                <option value="2" >Start Date: Oldest to Newest</option>
+                <option value="3" >Active Hunts Only</option>
+                <option value="4" >Expired Hunts Only</option>
+                <option value="5" >Pending Hunts Only</option>
+    </select>
+    </form>
 </p>
 <table class="table">
     <thead>
@@ -50,22 +61,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
-            <td>
+            <td class="endDate"> 
                 @Html.DisplayFor(modelItem => item.EndDate)
             </td>
-            <td>
-                    @{
-                        var timeRemaining = (item.EndDate - DateTime.Now).ToString();
-                        if (TimeSpan.Parse(timeRemaining).Seconds<0)
-                        {
-                            timeRemaining = "Ended";
-                        }
-                        else
-                        {
-                            timeRemaining = timeRemaining.Substring(0, timeRemaining.LastIndexOf("."));
-                        }
-                }
-                    @Html.DisplayFor(modelItem => timeRemaining)
+            <td class="tick">
+                @* Done in Javascript script below *@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Players.Count)
@@ -76,9 +76,59 @@
             <td>
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
                 @Html.ActionLink("View Hunt", "ViewTasks", new {  id=item.Id  }) |
+                @Html.ActionLink("Hunt Details", "Details", new { id=item.Id })  |
                 @Html.ActionLink("Delete Hunt", "Delete", new {  id=item.Id  })
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+
+<script type="text/javascript" async>
+
+    //Get Time Remaining element
+    var times = document.getElementsByClassName("tick");
+
+    //Get the end date from the Ending Date column in the table
+    var getEndDate = document.getElementsByClassName('endDate');
+
+    //Update the time remaining every 0.5 seconds
+    var x = setInterval(function () {
+
+        //Loop through each hunt in the table
+        for(var i = 0; i < times.length; i++)
+        {
+            //Convert getEndDate to DateTime object
+            var endDate = new Date(getEndDate[i].textContent).getTime();
+
+            //Get current date and time
+            var now = new Date().getTime();
+
+            //Call timetick to create a counter for every hunt
+            times[i].innerHTML = timetick(endDate, now);
+        }
+    }, 500);
+
+    function timetick(endDate, now)
+    {
+        //Get time between current time and end date
+        var distance = endDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        //If the hunt has ended, return the word Ended
+        if (distance < 0) {
+            return "Ended"
+        }
+        //else, return the current time remaining
+        else {
+            return days + ":" + hours + ":"
+                + minutes + ":" + seconds;
+        }       
+    }
+</script>

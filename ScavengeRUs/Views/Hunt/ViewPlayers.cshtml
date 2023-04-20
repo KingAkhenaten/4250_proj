@@ -64,7 +64,11 @@
                     @Html.DisplayFor(model => item.AccessCode.Code)
                 </td>
                 <td>
-                    @Html.ActionLink("Revoke Access", "RemoveUser", new { id=item.UserName, huntId=hunt.Id })
+                    <input name="username" hidden id="username" value="@item.UserName" />
+                    <input name="huntId" hidden id="huntId" value="@hunt.Id" />
+                    <a class="link" style="cursor:pointer"  onclick="emailSend('@item.UserName', @hunt.Id)">Send Email</a>
+                    |
+                    @Html.ActionLink("Revoke Access", "RemoveUser", new { id=item.UserName, huntId=hunt.Id }, new { @class = "link" })
                 </td>
             </tr>
         }

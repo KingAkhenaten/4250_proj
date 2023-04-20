@@ -1,5 +1,7 @@
 ﻿@model ScavengeRUs.Models.Entities.ApplicationUser
 @using ScavengeRUs.Models.Enums
+@using Microsoft.Web.Helpers
+
 @{
     ViewData["Title"] = "Create";
 }
@@ -8,10 +10,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" required class="form-control" />
+                <input asp-for="Email" type="email" required class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,10 +42,15 @@
                 </select>
                 <span asp-validation-for="Roles" class="text-danger"></span>
             </div>
+
+            <div class="form-group">
+                <label for="csvFile">Imoport Users from CSV:</label>
+                <input type="file" id="csvFile" name="csvFile" accept=".csv" />
+            </div>
+
             <div class="form-group">
                 <p style="margin-top:5px">*Default password is Etsupass12!</p>
                 <input type="submit" value="Create" class="btn btn-primary" />
-                
             </div>
         </form>
     </div>
@@ -54,5 +61,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
