@@ -16,6 +16,7 @@ namespace ScavengeRUs.Services
         private readonly ApplicationDbContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+
         /// <summary>
         /// Dependency injection that pulls in the database
         /// </summary>q
@@ -30,30 +31,32 @@ namespace ScavengeRUs.Services
             _userManager = userManager;
             _roleManager = roleManager;
         }
+
         /// <summary>
-        /// Returns a user object given the username
+        /// Reads the user object from the database using the username given
         /// </summary>
         /// <param name="userName"></param>
-        /// <returns></returns>
+        /// <returns>Returns the user object given the username</returns>
         public async Task<ApplicationUser?> ReadAsync(string userName)
         {
             var user =  _db.Users
-                .Include(a => a.AccessCode)
+                .Include(a => a.AccessCode) //includes the access code object that relates to this player
                 .FirstOrDefault(u => u.UserName.ToLower() == userName.ToLower());
             if (user != null)
             {
-                _db.Entry(user).Reference(h => h.Hunt).Load();
+                _db.Entry(user).Reference(h => h.Hunt).Load(); //loads the hunt of this user when they are read from the database
                 user.Roles = await _userManager.GetRolesAsync(user);
                 await _db.SaveChangesAsync();   
             }
             return user;
         }
+
         /// <summary>
         /// Passing a user object and a password this creates a new user and adds it to the database
         /// </summary>
         /// <param name="user"></param>
         /// <param name="password"></param>
-        /// <returns></returns>
+        /// <returns>The user object that was created</returns>
         public async Task<ApplicationUser> CreateAsync(
             ApplicationUser user, string password)
         {
@@ -62,12 +65,13 @@ namespace ScavengeRUs.Services
             user.Roles.Add(user.Roles.First());
             return user;
         }
+
         /// <summary>
         /// This assigns a user to a role passing the username and rolename
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="roleName"></param>
-        /// <returns></returns>
+        /// <returns>Nothing</returns>
         public async Task AssignUserToRoleAsync(string userName, string roleName)
         {
             //var roleCheck = await _roleManager.RoleExistsAsync(roleName);
@@ -91,14 +95,14 @@ namespace ScavengeRUs.Services
                 var result = await _userManager.AddToRoleAsync(user, role.Name);
                 await _db.SaveChangesAsync();
             }
-            
         }
+
         /// <summary>
         /// This remove a user from a role passing the username and rolename
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="roleName"></param>
-        /// <returns></returns>
+        /// <returns>Nothing</returns>
         public async Task RemoveUserFromRoleAsync(string userName, string roleName)
         {
             var user = await ReadAsync(userName);
@@ -110,15 +114,16 @@ namespace ScavengeRUs.Services
                 }
             }
         }
+
         /// <summary>
         /// This returns a list of all the users
         /// </summary>
-        /// <returns></returns>
+        /// <returns>A collection of all ApplicationUser objects in the database</returns>
         public async Task<ICollection<ApplicationUser>> ReadAllAsync()
         {
             var users = await _db.Users
-                .Include(p => p.Hunt)
-                .Include(p => p.AccessCode)
+                .Include(p => p.Hunt) //includes the hunt they are associated with when read
+                .Include(p => p.AccessCode) //inludes the accesscode they are associated with when read
                 .ToListAsync();
             
             foreach (var user in users)
@@ -130,12 +135,13 @@ namespace ScavengeRUs.Services
             }
             return users;
         }
+
         /// <summary>
         /// This updates the a users fields. Passing the username (old user) and user object (new user)
         /// </summary>
         /// <param name="username"></param>
         /// <param name="user"></param>
-        /// <returns></returns>
+        /// <returns>Nothing</returns>
         public async Task UpdateAsync(string username, ApplicationUser user)
         {
             var userToUpdate = await ReadAsync(username);
@@ -150,11 +156,12 @@ namespace ScavengeRUs.Services
                 await _db.SaveChangesAsync();
             }
         }
+
         /// <summary>
-        /// This delete a user from the db passing the username
+        /// This deletes a user from the db passing the username
         /// </summary>
         /// <param name="username"></param>
-        /// <returns></returns>
+        /// <returns>Nothing</returns>
         public async Task DeleteAsync(string username)
         {
             var user = _db.Users.FirstOrDefault(u => u.UserName == username);
@@ -164,13 +171,21 @@ namespace ScavengeRUs.Services
                 await _db.SaveChangesAsync();
             }
         }
+
+        /// <summary>
+        /// This adds a user to a hunt by passing the username of the user and the hunt object they are going to be added to.
+        /// NOTE: I don't think this method is being called anywhere, maybe test a little to see
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="hunt"></param>
+        /// <returns>Nothing</returns>
         public async Task AddUserToHunt(string username, Hunt hunt)
         {
             var user = await ReadAsync(username);
             if (user != null)
             {
                 user.Hunt = hunt;
-                var accessCode = new AccessCode()
+                var accessCode = new AccessCode() //creates a new accesscode for this user
                 {
                     Code = $"{username}{hunt.Id}"
                 };
@@ -178,6 +193,12 @@ namespace ScavengeRUs.Services
                 await UpdateAsync(username, user);
             }
         }
+
+        /// <summary>
+        /// This finds a user from the database by using their accesscode for a hunt.
+        /// </summary>
+        /// <param name="accessCode"></param>
+        /// <returns>The ApplicationUser object that relates to the accesscode given</returns>
         public async Task<ApplicationUser> FindByAccessCode(string accessCode)
         {
             if (accessCode == null)
@@ -185,10 +206,9 @@ namespace ScavengeRUs.Services
                 return null!;
             }
             var user = await _db.Users
-                .Include(a => a.Hunt)
+                .Include(a => a.Hunt) //includes the hunt object that relates to the user
                 .FirstOrDefaultAsync(u => u.AccessCode!.Code == accessCode);
             return user!;
         }
-
     }
 }
