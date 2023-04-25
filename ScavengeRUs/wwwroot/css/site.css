@@ -1,22 +1,28 @@
 html {
     font-size: 14px;
+    cursor:default;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+        cursor: default;
+    }
+
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
+    cursor: default;
 }
 
 body {
     margin-bottom: 60px;
     color: #191970;
+    cursor: default;
 }
+
 #taskimg {
     width: 100px;
     height: 100px;
@@ -61,6 +67,7 @@ body {
 
 .button:hover {
        background: gold;
+       cursor: pointer;
  }
 
 .right {
@@ -100,8 +107,9 @@ body {
     color: white;
     border-radius: 8px;
 }
-#taskitem:hover .completeBtn{
+#taskitem:hover .completeBtn {
     background-color: #FFC72C;
+    cursor: pointer;
 }
 #taskAnswer span i {
     vertical-align: middle;
@@ -152,6 +160,7 @@ body {
 
 .btn-primary {
     background-color: #191970;
+    cursor: pointer;
 }
 
 .bg-etsu-blue {
