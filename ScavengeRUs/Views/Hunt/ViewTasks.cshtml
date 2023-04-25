@@ -94,13 +94,18 @@
 
 
 <div id="taskarea">
-    <div class="row">
+    @*<div class="row">
         <div class="col">
             <h1>@hunt.HuntName</h1>
         </div>
     </div>
-    <p>
-        <a asp-action="Scoreboard" asp-route-Id="@hunt.Id" class="btn bg-etsu-gold">View Scoreboard</a>
+    @*<h4>Introduction Text</h4>*@
+    <br />
+    <h1>
+        @hunt.HuntName
+    </h1>
+    <div class="scoreboard">
+        <a asp-action="Scoreboard" asp-route-Id="@hunt.Id" class="btn bg-etsu-blue" style="float: right; color: white;">View Scoreboard</a>
         @if (User.IsInRole("Admin"))
         {
             @if (displayEdit) // checks if the hunt has ended, if it has, it will not diplay the button to edit it
@@ -112,12 +117,14 @@
 
             <a asp-action="Index" asp-route-Id="@hunt.Id" class="btn btn-danger">View all hunts</a>
             <span style="color:Red;">*** Only admins can see/access the red buttons</span>
-            <hr />
+
         }
-    </p>
-    <h4>Introduction Text</h4>
-    <p>@hunt.InvitationText</p>
-    <hr />
+    </div>
+    <h6>
+        Welcome to the hunt! <br /> Click a task to get started. Each time a task is completed, you will see the project on the task bar below. 
+    </h6>
+   
+    <hr/>
     <br />
     <p id="huntHeader">Tasks for @hunt.HuntName</p>
 
