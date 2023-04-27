@@ -27,6 +27,7 @@ body {
     width: 100px;
     height: 100px;
 }
+
 #taskheader {
     font-weight: bold;
 }
@@ -35,15 +36,17 @@ body {
     font-weight: bold;
     text-decoration: underline;
 }
+
 #taskbody {
     position: relative;
 
 }
+
 .list-group-item, col  {
-    
     background-color: rgba(172,172,172,0.2) !important;
     position: relative;
 }
+
 .offcanvas{
     width: 350px;
 }
@@ -56,6 +59,7 @@ body {
     position: fixed;
     background: #041E41;
 }
+
 .button.right {
     top: 40%;
     color: #041E41;
@@ -74,6 +78,7 @@ body {
     right: 100%;
     border-radius: 100px 0 0 100px;
 }
+
 .triangle-right {
     width: 0;
     height: 0;
@@ -82,6 +87,7 @@ body {
     border-bottom-width: 20px;
     border-left: 10px solid rgba(255, 255, 255, .5);
 }
+
 .left {
     right: 0%;
     border-radius: 100px 0 0 100px;
@@ -95,36 +101,38 @@ body {
     border-bottom-width: 20px;
     border-right: 10px solid rgba(255, 255, 255, .5);
 }
+
 #taskAnswer span {
     border: solid 1px black;
     width: 150px;
     height: 30px;
     text-align: center;
-
-
     vertical-align: middle;
     background-color: #041E41;
     color: white;
     border-radius: 8px;
 }
-#taskitem:hover .completeBtn {
+
+#taskitem:hover .completeBtn{
     background-color: #FFC72C;
     cursor: pointer;
 }
+
 #taskAnswer span i {
     vertical-align: middle;
     text-align: center;
-
-
 }
+
 #huntHeader {
     text-align: center;
     font-weight: bold;
     font-size: 24px;
 }
+
 #huntMainHeader {
     display: inline;
 }
+
 #taskRemove span{
 
 }
@@ -197,9 +205,80 @@ body {
     line-height: normal !important;
 }
 
-.scoreboard {
-    padding-top: 0px !important;
-    padding-bottom: 2px !important;
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(89.1%, 100%, 0);
+        transform: translate3d(89.1%, 100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(89.1%, 27.63%, 0);
+        transform: translate3d(89.1%, 27.63%, 0);
+    }
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(89.1%, 100%, 0);
+        transform: translate3d(89.1%, 100%, 0);
+    }
 
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(89.1%, 27.63%, 0);
+        transform: translate3d(89.1%, 27.63%, 0);
+    }
+}
+
+svg {
+    width: 20rem;   /*not sure what units to use here*/
+    height: auto;
+}
+
+#svgwrapper {
+    height:100%;
+}
+
+#svgwrapper:hover .xclass {
+    visibility: visible;
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+    animation-duration: 1.8s;
+    animation-iteration-count: 1;
+}
+
+#svgwrapper:hover .rectclass {
+    visibility: visible;
+    -webkit-animation-name: fadeInUp;
+    animation-name: fadeInUp;
+    animation-iteration-count: 1;
+}
+
+/* sorry i couldn't figure out how nesting css works lol*/
+#svgwrapper:hover .r1 {
+    animation-duration: .2s;
+}
+
+#svgwrapper:hover .r2 {
+    animation-duration: .4s;
+}
+
+#svgwrapper:hover .r3 {
+    animation-duration: .6s;
+}
+
+#svgwrapper:hover .r4 {
+    animation-duration: .8s;
+}
+
+rect.rectclass {
+    visibility: hidden;
+}
+
+path.xclass {
+    visibility: hidden;
+    transform: translate(89.1%,27.63%);
+}

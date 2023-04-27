@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Migrations.Internal;
 using ScavengeRUs.Models.Entities;
 
 namespace ScavengeRUs.Data
 {
     /// <summary>
     /// This is the interface to connects to the database
-    /// 
     /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
@@ -16,6 +17,8 @@ namespace ScavengeRUs.Data
         {
         }
 
+        // The DbSet fields are basically the tables that are in the database, so if you add a new table and migrate it to the database,
+        // you can add a DbSet field here to use it in a repository
         public DbSet<Location> Location => Set<Location>();
         public DbSet<Hunt> Hunts => Set<Hunt>();
         public DbSet<HuntLocation> HuntLocation => Set<HuntLocation>();

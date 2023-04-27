@@ -13,7 +13,17 @@ using ScavengeRUs.Services;
 
 namespace ScavengeRUs.Controllers
 {
-     //makes sure that only admin can see this page
+    /// <summary>
+    /// This controller is for Hunt methods.
+    /// <br></br>
+    /// This file is a controller, that means it handles HTTP requests from the client, each method listed below
+    /// can be called while the application is running by using this syntax in the URL: /{ControllerName}/{MethodName}. For example,
+    /// to call the Index method of the Home controller, it would be /Home/Index<br></br>
+    /// A method handles HTTP GET requests by default, to handle other requests, it will have a tag that specifies so above it.
+    /// Most of these methods also return a view, which is the HTML file the client will recieve. You will find these files in the 
+    /// Views folder of the project. They match up with the controller and method name they go to. For example, the view for the
+    /// Index page in the Home controller is in the Views/Home/Index.cshtml directory.
+    /// </summary>
     public class LocationsController : Controller
     {
         private readonly IUserRepository _userRepo;
@@ -33,21 +43,21 @@ namespace ScavengeRUs.Controllers
         }
 
         /// <summary>
-        /// This method maps to the /Locations URL. It shows the table
+        /// This method maps to the Views/Locations/Index view. It shows the table of all locations in the database. Only an admin can call this method.
         /// </summary>
-        /// <returns></returns>
-        /// 
+        /// <returns>Views/Locations/Index.cshtml</returns>
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Location.ToListAsync());
+              return View(await _context.Location.ToListAsync()); //passes a list of all locations from the database as the model for the view
         }
 
         /// <summary>
-        /// This method shows the details of a specific location based on Id
+        /// This method maps to the Views/Locations/Details view. The parameter is the id of the location
+        /// and it gets this from the URL. Only an admin can call this method. The view for this just
+        /// shows more information about the given location.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Views/Locations/Details.cshtml, or will return a 404 error if the location or id does not exist</returns>
         /// 
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
@@ -64,12 +74,13 @@ namespace ScavengeRUs.Controllers
                 return NotFound();
             }
 
-            return View(location);
+            return View(location); //passes the location object as the model for the view
         }
 
         /// <summary>
+        /// This maps to the Views/Locations/Create view. Can only be called by an admin.
         /// This is the page that will be shown when the admin want to create a new location from the 
-        /// website
+        /// website.
         /// </summary>
         /// <returns></returns>
         /// 
@@ -80,10 +91,10 @@ namespace ScavengeRUs.Controllers
         }
 
         /// <summary>
-        /// This method will be called when the admin submits the newly created location
+        /// This method handles the post request from the Views/Locations/Create view which has a form.
+        /// The parameters are what is read from the form when this method is called. This can only be called by an admin.
         /// </summary>
-        /// <param name="location"></param>
-        /// <returns></returns>
+        /// <returns>Views/Hunt/MaangeTasks.cshtml, or will redirect to Views/Locations/Create.cshtml if the hunt id is 0</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -99,38 +110,39 @@ namespace ScavengeRUs.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(location);
+            return View(location); //passes the location object as the model for the view
         }
 
         /// <summary>
+        /// This maps to the Views/Locations/Edit.cshtml. Can only be called by an admin.
+        /// The parameter is read from the URL which is the id of the location to edit.
         /// This is the page that will be shown when the admin attempts to edit a location
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// 
+        /// <returns>Views/Locations/Edit.cshtml, will return a 404 error if the id is null or if the location does not exist</returns>
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Location == null)
             {
-                return NotFound();
+                return NotFound(); //returns a 404 error
             }
 
             var location = await _context.Location.FindAsync(id);
             if (location == null)
             {
-                return NotFound();
+                return NotFound(); //returns a 404 error
             }
-            return View(location);
+            return View(location); //passes the location object as the model for the view
         }
 
         /// <summary>
-        /// This method will be called when the admin submits the edit to the location from the previous
-        /// method
+        /// This method handles the post request from the Views/Locations/Edit.cshtml view which has a form.
+        /// It can only be called by an admin. The parameters are read from the form when this method is called.
+        /// This method will be called when the admin submits the edit to the location from the previous method.
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="location"></param>
-        /// <returns></returns>
+        /// <returns>Views/Location/Index.cshtml, will return to Views/Locations/Edit.cshtml if the model isn't valid. 
+        /// Will also return a 404 error if the id does not match up with a current id.
+        /// </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -138,7 +150,7 @@ namespace ScavengeRUs.Controllers
         {
             if (id != location.Id)
             {
-                return NotFound();
+                return NotFound(); //returns a 404 error
             }
 
             if (ModelState.IsValid)
@@ -152,7 +164,7 @@ namespace ScavengeRUs.Controllers
                 {
                     if (!LocationExists(location.Id))
                     {
-                        return NotFound();
+                        return NotFound(); //returns a 404 error
                     }
                     else
                     {
@@ -161,38 +173,40 @@ namespace ScavengeRUs.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(location);
+            return View(location); //passes the location object as the model for the view
         }
 
         /// <summary>
+        /// This method maps to the Views/Locations/Delete view. This can only be called from an admin.
+        /// The parameter is the id of the location to delete and is received from the url when this method is called.
         /// This page will be shown when the admin attempts to delete a location from the site
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// 
+        /// <returns>Views/Locations/Delete.cshtml, or will return a 404 error if the id is null or the location does not exist</returns>
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Location == null)
             {
-                return NotFound();
+                return NotFound(); //returns a 404 error
             }
 
             var location = await _context.Location
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (location == null)
             {
-                return NotFound();
+                return NotFound(); //returns a 404 error
             }
 
-            return View(location);
+            return View(location); //passes the location object as the model for the view
         }
 
         /// <summary>
+        /// This method handles the post request from the Views/Locations/Delete view which has a form.
+        /// The parameter is an id for the location which is read from the form when this method is called.
+        /// This can only be called by an admin.
         /// This method will activate when the admin submits the delete action on a location
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Views/Locations/Index.cshtml, or will return a problem is something goes wrong</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
@@ -213,15 +227,17 @@ namespace ScavengeRUs.Controllers
         }
 
         /// <summary>
-        /// This method checks to make sure that a Location row exists in the database
+        /// This method checks to make sure that a Location row exists in the database.
+        /// The id is the primary key of the location objects in the database.
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>true if the location exists, false if not</returns>
         private bool LocationExists(int id)
         {
           return _context.Location.Any(e => e.Id == id);
         }
+
         /// <summary>
+        /// This handles the post request for when a user submits an answer for a task. This can only be called by admins and players.
         /// This method validates an answer for a task. Used by an AJAX call from the hunt page. See site.js
         /// </summary>
         /// <param name="id"></param>

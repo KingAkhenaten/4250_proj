@@ -3,6 +3,10 @@ using ScavengeRUs.Models.Entities;
 
 namespace ScavengeRUs.Services
 {
+    /// <summary>
+    /// This interface is used to add the UserRepository as a service to the application in the program.cs file. 
+    /// The methods below are implemented in the UserRepository.cs file.
+    /// </summary>
     public interface IUserRepository
     {
         Task<ApplicationUser?> ReadAsync(string userName);

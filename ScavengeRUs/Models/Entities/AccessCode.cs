@@ -4,6 +4,10 @@ using MessagePack;
 
 namespace ScavengeRUs.Models.Entities
 {
+    /// <summary>
+    /// This is the model which correlates to the AccessCode table in the database.
+    /// The properties in this class are the columns in the table, except a few.
+    /// </summary>
     public class AccessCode
     {
         public int Id { get; set; }

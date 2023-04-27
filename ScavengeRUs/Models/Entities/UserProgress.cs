@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ScavengeRUs.Models.Entities
 {
+    /// <summary>
+    /// This is model we planned on using to track a player's progress but we didn't get it implemented yet.
+    /// </summary>
     public class UserProgress 
     {
         [Key]

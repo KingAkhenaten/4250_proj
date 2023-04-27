@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ScavengeRUs.Models.Entities
 {
     /// <summary>
-    /// This is the object for a user. If you need to add a column to the user table this is where you do it. 
+    /// This is the object for a user. If you need to add a column to the AspNetUsers table this is where you do it. 
     /// The database table is built from this. If you change anything here add a new migration and update the database
     /// (in package manager console run "add-migration mig{xx}" "update-database"
     /// </summary>

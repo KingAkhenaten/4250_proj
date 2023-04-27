@@ -2,6 +2,10 @@
 
 namespace ScavengeRUs.Services
 {
+    /// <summary>
+    /// This interface is used to add the HuntRepository as a service to the application in the program.cs file. 
+    /// The methods below are implemented in the HuntRepository.cs file.
+    /// </summary>
     public interface IHuntRepository
     {
         Task<ICollection<Hunt>> ReadAllAsync();
