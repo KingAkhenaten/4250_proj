@@ -226,7 +226,7 @@ body {
 }
 
 svg {
-    width: 20rem;
+    width: 20rem;   /*not sure what units to use here*/
     height: auto;
 }
 
@@ -249,6 +249,7 @@ svg {
     animation-iteration-count: 1;
 }
 
+/* sorry i couldn't figure out how nesting css works lol*/
 #svgwrapper:hover .r1 {
     animation-duration: .2s;
 }
