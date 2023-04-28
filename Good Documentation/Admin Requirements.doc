@@ -1,0 +1,324 @@
+Date: Thu, 27 Apr 2023 18:30:58 +0000 (UTC)
+Message-ID: <610428838.3.1682620258600@52f8a37d61b3>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_2_1183392085.1682620258600"
+
+------=_Part_2_1183392085.1682620258600
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Admin Requirements</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Admin Requirements</h1>
+    <div class=3D"Section1">
+        <p>Theme: Admin is able to manage multiple scavenger hunts</p>
+<p>User Stories:</p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(0,102,68);">As an Admin, I want to be able=
+ to see all the hunts in the system</span><span style=3D"color: rgb(255,86,=
+48);"> </span><span style=3D"color: rgb(0,102,68);">and their status</span>=
+<span style=3D"color: rgb(255,86,48);"> </span><span style=3D"color: rgb(0,=
+102,68);">so that I can manage them effectively</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">a) =
+&nbsp; &nbsp; Should be able to sort the list by date created (oldest first=
+ or newest first), only active hunts, only expired hunts, only pending hunt=
+s, date started (oldest first or newest first)</span></p>
+<p style=3D"margin-left: 30.0px;"></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(0,102,68);">As an Admin, I want to be able=
+ to create a new hunt</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">a) =
+&nbsp; &nbsp; Set a start date and an end date</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">b) =
+&nbsp; &nbsp; Assign a title and theme</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">c) =
+&nbsp; &nbsp; Set the invitation text that is included in player invitation=
+s</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">d) =
+&nbsp; &nbsp; Assign a list of tasks players are to perform</span></p>
+<p style=3D"margin-left: 90.0px;"><span style=3D"color: rgb(0,102,68);">i)<=
+/span><span style=3D"color: rgb(54,179,126);">&nbsp;</span><span style=3D"c=
+olor: rgb(255,86,48);"> </span><span style=3D"color: rgb(0,102,68);">A task=
+ consists of a label displayed to players, the Lat/long of the location whe=
+re they perform the task (must be precise enough to establish if someone is=
+ within 50 feet of it), a QR code value which must be human consumable and =
+relevant to the task in question,</span><span style=3D"color: rgb(255,86,48=
+);"> a QR code which encodes the value.</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">e)=
+ &nbsp; &nbsp; Set the order the list appears to players during the hunt</s=
+pan></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">f) =
+&nbsp; &nbsp; &nbsp; Assign a url for the hunt</span></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(0,102,68);">As an Admin, I want to be able=
+ to edit an existing hunt</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">a) =
+&nbsp; &nbsp; Can only edit hunts that are Pending or Active</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">b) =
+&nbsp; &nbsp; Admin can edit any part of the hunt except the status and cre=
+ation date</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">c)=
+ &nbsp; &nbsp; If an admin changes the status to Active, all the players as=
+sociated with the hunt at that moment will receive a text message telling t=
+he hunt has started</span></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(0,102,68);">As an Admin, I want to be able=
+ to quickly create accounts for a list of people so that I don=E2=80=99t ha=
+ve to manually enter each person</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">a) =
+&nbsp; &nbsp; Create a new account using a person=E2=80=99s email address a=
+nd phone number</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">b) =
+&nbsp; &nbsp; Find an existing account using a person=E2=80=99s email addre=
+ss </span><span style=3D"color: rgb(255,86,48);">and phone number</span></p=
+>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">c) =
+&nbsp; &nbsp; Find an existing account using a person=E2=80=99s access code=
+ </span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">d) =
+&nbsp; &nbsp; Invite someone to participate in a hunt by sending the hunt=
+=E2=80=99s url and a invitation message to their email, </span><span style=
+=3D"color: rgb(255,86,48);">then to send their unique access code to their =
+phone via text message</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">e)=
+ &nbsp; &nbsp; A player=E2=80=99s access code is unique to the hunt they ar=
+e invited into (they can have multiple access code but each code goes to a =
+different hunt)</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(0,102,68);">f) =
+&nbsp; &nbsp; &nbsp; Access codes can be active or disabled or pending invi=
+te</span></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(0,102,68);">As an Admin, I want to be able=
+ to invite one or more people to play in a specific hunt so that I can cont=
+rol/manage who is involved</span></p></li>
+</ol>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_2_1183392085.1682620258600--

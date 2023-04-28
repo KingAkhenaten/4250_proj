@@ -1,0 +1,321 @@
+Date: Thu, 27 Apr 2023 18:31:15 +0000 (UTC)
+Message-ID: <354923102.5.1682620275037@ba64c69b3cf9>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_4_844597060.1682620275037"
+
+------=_Part_4_844597060.1682620275037
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>User Requirements</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>User Requirements</h1>
+    <div class=3D"Section1">
+        <p>Theme: User is able to play in a scavenger hunt</p>
+<p>User Stories:</p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(54,179,126);">As a Player, I want to be ab=
+le to join a hunt so I can participate</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(54,179,126);">a=
+) &nbsp; &nbsp; All players have an access code that is unique a specific h=
+unt</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(54,179,126);">b=
+)</span><span style=3D"color: rgb(255,86,48);"> &nbsp; &nbsp; </span><span =
+style=3D"color: rgb(54,179,126);">The player enters that code on the hunt u=
+rl page in order to play</span></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(255,86,48);">As a Player, I want to be abl=
+e to team up with other people so we can participate in the hunt as a group=
+</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">a)=
+ &nbsp; &nbsp; More than one person can use the same access code at the sam=
+e time on different devices in order to =E2=80=9Cplay as a team=E2=80=9D</s=
+pan></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">b)=
+ &nbsp; &nbsp; Player screens need to be refreshed so they can see progress=
+ other team members have made</span></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(54,179,126);">As a Player, I want to be ab=
+le to easily record in the game that I completed one of the tasks in the hu=
+nt so that I can get credit for my progress</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(54,179,126);">a=
+) &nbsp; &nbsp; For the first release, all tasks are locations the player m=
+ust go to</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">b)=
+ &nbsp; &nbsp; If the player has location enabled, they can hit =E2=80=9CI =
+am here=E2=80=9D to compare their location to the lat/long associated with =
+the list of locations in the hunt&nbsp; (must be within 50 feet)</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">c)=
+ &nbsp; &nbsp; If the player has a camera enabled, they can hit =E2=80=9Csc=
+an QR Code=E2=80=9D to read in the QR code symbol located at the hunt locat=
+ion</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">d)=
+ &nbsp; &nbsp; Alternatively, the player can enter the text that appears be=
+low the QR code symbol located at the hunt location</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(54,179,126);">e=
+) &nbsp; &nbsp; The player should be given a status of their submission</sp=
+an></p>
+<p style=3D"margin-left: 30.0px;"><span style=3D"color: rgb(54,179,126);">&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;i)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Valid entry, progress is=
+ recorded</span></p>
+<p><span style=3D"color: rgb(255,86,48);">(1) &nbsp; A valid entry updates =
+their status on the server with a timestamp</span></p>
+<p><span style=3D"color: rgb(255,86,48);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;ii)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Invalid entry=
+, no progress recorded</span></p>
+<p><span style=3D"color: rgb(255,86,48);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;iii)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Unable to validate=
+, no internet connection</span></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(54,179,126);">As a Player, I want to be ab=
+le to see how well I=E2=80=99m doing compared to other players so that I ca=
+n be competitive</span></p></li>
+</ol>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(54,179,126);">a=
+) &nbsp; &nbsp; A player that is logged in, can see the list of tasks assoc=
+iated with the hunt</span></p>
+<p style=3D"margin-left: 60.0px;"><span style=3D"color: rgb(255,86,48);">b)=
+ &nbsp; &nbsp; The list is automatically ordered to show unfinished tasks f=
+irst</span></p>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(255,86,48);">As a Player, I want to be abl=
+e to see, on a map, which task locations I have visited and which ones I ha=
+ven=E2=80=99t so that I can determine where to go next</span></p></li>
+</ol>
+<ol start=3D"1">
+<li><p><span style=3D"color: rgb(255,86,48);">As a Player, I want to be abl=
+e to customize my username and profile picture so that I can manage the ide=
+ntity others can see for me</span></p></li>
+</ol>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_4_844597060.1682620275037--

@@ -1,0 +1,311 @@
+Date: Thu, 27 Apr 2023 18:36:29 +0000 (UTC)
+Message-ID: <282785198.7.1682620589904@00350089481a>
+Subject: Exported From Confluence
+MIME-Version: 1.0
+Content-Type: multipart/related; 
+	boundary="----=_Part_6_1590231471.1682620589904"
+
+------=_Part_6_1590231471.1682620589904
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Content-Location: file:///C:/exported.html
+
+<html xmlns:o=3D'urn:schemas-microsoft-com:office:office'
+      xmlns:w=3D'urn:schemas-microsoft-com:office:word'
+      xmlns:v=3D'urn:schemas-microsoft-com:vml'
+      xmlns=3D'urn:w3-org-ns:HTML'>
+<head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+">
+    <title>Server Documentation</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:TargetScreenSize>1024x640</o:TargetScreenSize>
+            <o:PixelsPerInch>72</o:PixelsPerInch>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>90</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+                <!--
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: 1.0in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        table {
+            border: solid 1px;
+            border-collapse: collapse;
+        }
+
+        table td, table th {
+            border: solid 1px;
+            padding: 5px;
+        }
+
+        td {
+            page-break-inside: avoid;
+        }
+
+        tr {
+            page-break-after: avoid;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        /* Confluence print stylesheet. Common to all themes for print medi=
+a */
+/* Full of !important until we improve batching for print CSS */
+
+@media print {
+    #main {
+        padding-bottom: 1em !important; /* The default padding of 6em is to=
+o much for printouts */
+    }
+
+    body {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+    }
+
+    body, #full-height-container, #main, #page, #content, .has-personal-sid=
+ebar #content {
+        background: var(--ds-surface, #fff) !important;
+        color: var(--ds-text, #000) !important;
+        border: 0 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+    a, a:link, a:visited, a:focus, a:hover, a:active {
+        color: var(--ds-text, #000);
+    }
+
+    #content h1,
+    #content h2,
+    #content h3,
+    #content h4,
+    #content h5,
+    #content h6 {
+        font-family: Arial, Helvetica, FreeSans, sans-serif;
+        page-break-after: avoid;
+    }
+
+    pre {
+        font-family: Monaco, "Courier New", monospace;
+    }
+
+    #header,
+    .aui-header-inner,
+    #navigation,
+    #sidebar,
+    .sidebar,
+    #personal-info-sidebar,
+    .ia-fixed-sidebar,
+    .page-actions,
+    .navmenu,
+    .ajs-menu-bar,
+    .noprint,
+    .inline-control-link,
+    .inline-control-link a,
+    a.show-labels-editor,
+    .global-comment-actions,
+    .comment-actions,
+    .quick-comment-container,
+    #addcomment {
+        display: none !important;
+    }
+
+    /* CONF-28544 cannot print multiple pages in IE */
+    #splitter-content {
+        position: relative !important;
+    }
+
+    .comment .date::before {
+        content: none !important; /* remove middot for print view */
+    }
+
+    h1.pagetitle img {
+        height: auto;
+        width: auto;
+    }
+
+    .print-only {
+        display: block;
+    }
+
+    #footer {
+        position: relative !important; /* CONF-17506 Place the footer at en=
+d of the content */
+        margin: 0;
+        padding: 0;
+        background: none;
+        clear: both;
+    }
+
+    #poweredby {
+        border-top: none;
+        background: none;
+    }
+
+    #poweredby li.print-only {
+        display: list-item;
+        font-style: italic;
+    }
+
+    #poweredby li.noprint {
+        display: none;
+    }
+
+    /* no width controls in print */
+    .wiki-content .table-wrap,
+    .wiki-content p,
+    .panel .codeContent,
+    .panel .codeContent pre,
+    .image-wrap {
+        overflow: visible !important;
+    }
+
+    /* TODO - should this work? */
+    #children-section,
+    #comments-section .comment,
+    #comments-section .comment .comment-body,
+    #comments-section .comment .comment-content,
+    #comments-section .comment p {
+        page-break-inside: avoid;
+    }
+
+    #page-children a {
+        text-decoration: none;
+    }
+
+    /**
+     hide twixies
+
+     the specificity here is a hack because print styles
+     are getting loaded before the base styles. */
+    #comments-section.pageSection .section-header,
+    #comments-section.pageSection .section-title,
+    #children-section.pageSection .section-header,
+    #children-section.pageSection .section-title,
+    .children-show-hide {
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .children-show-hide.icon {
+        display: none;
+    }
+
+    /* personal sidebar */
+    .has-personal-sidebar #content {
+        margin-right: 0px;
+    }
+
+    .has-personal-sidebar #content .pageSection {
+        margin-right: 0px;
+    }
+
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}
+-->
+    </style>
+</head>
+<body>
+    <h1>Server Documentation</h1>
+    <div class=3D"Section1">
+        <p>IP : 151.141.90.176</p>
+<p>Check status<br> <code>Sudo systemctl status BucHunt.service</code><br>F=
+orce stop<br> <code>Sudo systemctl stop BucHunt.service</code><br>Start<br>=
+ <code>Sudo systemctl start BucHunt.service</code><br>Restart<br> <code>Sud=
+o systemctl restart BucHunt.service</code></p>
+<p>To update the server app to the main repository:</p>
+<ol start=3D"1">
+<li><p>Transfer folder from publishing the project to the server.<br>This c=
+an be done various ways.<br>I used a FTP client to do this.<br>You must als=
+o manually transfer the database to the publishing folder<br>Make sure the =
+database (and the publishing folder the database is in) has read and write =
+permissions</p></li>
+<li><p>SSH into <a class=3D"external-link" href=3D"http://FALL22-4250-940-1=
+.etsu.edu" rel=3D"nofollow">FALL22-4250-940-1.etsu.edu</a><br>server: <a cl=
+ass=3D"external-link" href=3D"http://151.141.90.160/" rel=3D"nofollow">http=
+://151.141.90.176/</a><br>username: stuadmin<br>pass: tUpme35$</p></li>
+<li><p>Restart the service<br><code>Sudo systemctl restart BucHunt.service<=
+/code></p></li>
+<li><p>Verify its running correctly<br><code>Sudo systemctl status BucHunt.=
+service</code></p></li>
+<li><p>Verify the database connection works by trying to log in</p></li>
+</ol>
+<p>The proxy</p>
+<p> This redirects incoming http requests on port 80 to the service running=
+ on port 5000 of the localhost (our web app)</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: java; gutter: false; theme: Confluence" data-theme=3D"Confluence">`sudo n=
+ano /etc/apache2/sites-available/BucHunt.service`
+replaced contents with:
+&lt;VirtualHost *:80&gt;
+=09ProxyPreserveHost On
+=09ProxyPass / &lt;http://127.0.0.1:5000/&gt;
+=09ProxyPassReverse / &lt;http://127.0.0.1:5000/&gt;
+=09ErrorLog ${APACHE_LOG_DIR}BucHunt.log
+&lt;/VirtualHost&gt;</pre>=20
+</div>
+</div>
+<p>Enabling the proxy:<br> <code>sudo a2enmod proxy</code><br> <code>sudo a=
+2enmod proxy_http</code><br> <code>sudo a2enmod proxy_html</code><br> <code=
+>sudo systemctl reload/restart apache2.service</code></p>
+<p>System service</p>
+<div class=3D"code panel pdl" style=3D"border-width: 1px;">
+<div class=3D"codeContent panelContent pdl">=20
+<pre class=3D"syntaxhighlighter-pre" data-syntaxhighlighter-params=3D"brush=
+: plain; gutter: false; theme: Confluence" data-theme=3D"Confluence">This a=
+llows to run the web app as a service in the background
+
+`sudo nano /etc/systemd/system/BucHunt.service`
+
+
+[Unit]
+Description=3DBucHunt Web App
+
+[Service]
+WorkingDirectory=3D/home/stuadmin/BucHunt/ScavengeRUs/Release/
+ExecStart=3D/home/stuadmin/.dotnet/dotnet /home/stuadmin/BucHunt/ScavengeRU=
+s/Release/ScavengeR&gt;
+Restart=3Dalways
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=3D10
+KillSignal=3DSIGINT
+SyslogIdentifier=3Ddotnet-example
+User=3Dwww-data
+Environment=3DASPNETCORE_ENVIRONMENT=3DProduction
+Environment=3DDOTNET_PRINT_TELEMETRY_MESSAGE=3Dfalse
+
+[Install]
+WantedBy=3Dmulti-user.target</pre>=20
+</div>
+</div>
+<p></p>
+    </div>
+</body>
+</html>
+------=_Part_6_1590231471.1682620589904--
